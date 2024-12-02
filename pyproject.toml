@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "button-analyzer"
+version = "0.1.0"
+description = "Button Analysis Service with vLLM and EasyOCR"
+authors = ["Your Name <your.email@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = ">=0.107.0"
+uvicorn = "^0.24.0"
+vllm = "^0.6.4"
+easyocr = "^1.7.1"
+pillow = "^10.1.0"
+python-multipart = "^0.0.6"
+pydantic = "^2.4.2"
+numpy = "<2.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

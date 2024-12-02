@@ -3,6 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+./cache
+cache
+./cache/
+cache/
+
+
 # C extensions
 *.so
 
@@ -160,3 +166,40 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+cache/huggingface/hub/.locks/models--llava-hf--llava-1.5-7b-hf/4bd5222947172917d6a7770e47e797f3253c669a.lock
+cache/huggingface/hub/.locks/models--llava-hf--llava-1.5-7b-hf/04d334b028b1c479e0a1152eb71348ae509bb2d5.lock
+cache/huggingface/hub/.locks/models--llava-hf--llava-1.5-7b-hf/4f06177c37ca13944e73b57dd6d051767b950dffc12400c700dfa2509c24c697.lock
+cache/huggingface/hub/.locks/models--llava-hf--llava-1.5-7b-hf/5de92935009a2c670e07576ed411be82fd58b2ee.lock
+cache/huggingface/hub/.locks/models--llava-hf--llava-1.5-7b-hf/8d7eb9299fc02285ea047807e43b0688944ff6d0.lock
+cache/huggingface/hub/.locks/models--llava-hf--llava-1.5-7b-hf/9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347.lock
+cache/huggingface/hub/.locks/models--llava-hf--llava-1.5-7b-hf/38f4d736a2e2b34af9eaef607847407c0efc7980.lock
+cache/huggingface/hub/.locks/models--llava-hf--llava-1.5-7b-hf/46df6c6e5fad297fe7fbca4963dcf180cb1d0528cabc884d1f603311fed01328.lock
+cache/huggingface/hub/.locks/models--llava-hf--llava-1.5-7b-hf/695b1d57193f2740ecab31f39297a4fd2a2ed050.lock
+cache/huggingface/hub/.locks/models--llava-hf--llava-1.5-7b-hf/a782b2f1cdab4d0bacb2dc0f85d02c4b1e31f0bd.lock
+cache/huggingface/hub/.locks/models--llava-hf--llava-1.5-7b-hf/c11dbf016ee7d35ee130c19b67e20eb04873996006f424b7bcbd453b6517ee66.lock
+cache/huggingface/hub/.locks/models--llava-hf--llava-1.5-7b-hf/ed9b377d211618c8274de275f3d9d64257406615.lock
+cache/huggingface/hub/models--llava-hf--llava-1.5-7b-hf/blobs/4bd5222947172917d6a7770e47e797f3253c669a
+cache/huggingface/hub/models--llava-hf--llava-1.5-7b-hf/blobs/04d334b028b1c479e0a1152eb71348ae509bb2d5
+cache/huggingface/hub/models--llava-hf--llava-1.5-7b-hf/blobs/4f06177c37ca13944e73b57dd6d051767b950dffc12400c700dfa2509c24c697
+cache/huggingface/hub/models--llava-hf--llava-1.5-7b-hf/blobs/5de92935009a2c670e07576ed411be82fd58b2ee
+cache/huggingface/hub/models--llava-hf--llava-1.5-7b-hf/blobs/8d7eb9299fc02285ea047807e43b0688944ff6d0
+cache/huggingface/hub/models--llava-hf--llava-1.5-7b-hf/blobs/9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347
+cache/huggingface/hub/models--llava-hf--llava-1.5-7b-hf/blobs/38f4d736a2e2b34af9eaef607847407c0efc7980
+cache/huggingface/hub/models--llava-hf--llava-1.5-7b-hf/blobs/46df6c6e5fad297fe7fbca4963dcf180cb1d0528cabc884d1f603311fed01328
+cache/huggingface/hub/models--llava-hf--llava-1.5-7b-hf/blobs/695b1d57193f2740ecab31f39297a4fd2a2ed050
+cache/huggingface/hub/models--llava-hf--llava-1.5-7b-hf/blobs/a782b2f1cdab4d0bacb2dc0f85d02c4b1e31f0bd
+cache/huggingface/hub/models--llava-hf--llava-1.5-7b-hf/blobs/c11dbf016ee7d35ee130c19b67e20eb04873996006f424b7bcbd453b6517ee66
+cache/huggingface/hub/models--llava-hf--llava-1.5-7b-hf/blobs/ed9b377d211618c8274de275f3d9d64257406615
+cache/huggingface/hub/models--llava-hf--llava-1.5-7b-hf/refs/main
+cache/huggingface/hub/models--llava-hf--llava-1.5-7b-hf/snapshots/8c85e9a4d626b7b908448be32c1ba5ad79b95e76/added_tokens.json
+cache/huggingface/hub/models--llava-hf--llava-1.5-7b-hf/snapshots/8c85e9a4d626b7b908448be32c1ba5ad79b95e76/config.json
+cache/huggingface/hub/models--llava-hf--llava-1.5-7b-hf/snapshots/8c85e9a4d626b7b908448be32c1ba5ad79b95e76/generation_config.json
+cache/huggingface/hub/models--llava-hf--llava-1.5-7b-hf/snapshots/8c85e9a4d626b7b908448be32c1ba5ad79b95e76/model-00001-of-00003.safetensors
+cache/huggingface/hub/models--llava-hf--llava-1.5-7b-hf/snapshots/8c85e9a4d626b7b908448be32c1ba5ad79b95e76/model-00002-of-00003.safetensors
+cache/huggingface/hub/models--llava-hf--llava-1.5-7b-hf/snapshots/8c85e9a4d626b7b908448be32c1ba5ad79b95e76/model-00003-of-00003.safetensors
+cache/huggingface/hub/models--llava-hf--llava-1.5-7b-hf/snapshots/8c85e9a4d626b7b908448be32c1ba5ad79b95e76/model.safetensors.index.json
+cache/huggingface/hub/models--llava-hf--llava-1.5-7b-hf/snapshots/8c85e9a4d626b7b908448be32c1ba5ad79b95e76/preprocessor_config.json
+cache/huggingface/hub/models--llava-hf--llava-1.5-7b-hf/snapshots/8c85e9a4d626b7b908448be32c1ba5ad79b95e76/special_tokens_map.json
+cache/huggingface/hub/models--llava-hf--llava-1.5-7b-hf/snapshots/8c85e9a4d626b7b908448be32c1ba5ad79b95e76/tokenizer_config.json
+cache/huggingface/hub/models--llava-hf--llava-1.5-7b-hf/snapshots/8c85e9a4d626b7b908448be32c1ba5ad79b95e76/tokenizer.json
+cache/huggingface/hub/models--llava-hf--llava-1.5-7b-hf/snapshots/8c85e9a4d626b7b908448be32c1ba5ad79b95e76/tokenizer.model
