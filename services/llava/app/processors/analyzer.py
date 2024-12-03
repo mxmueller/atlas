@@ -1,5 +1,5 @@
 from concurrent.futures import ThreadPoolExecutor
-from vllm import LLM, SamplingParams  # Added SamplingParams import
+from vllm import LLM, SamplingParams
 import easyocr
 import asyncio
 from PIL import Image
@@ -7,8 +7,8 @@ import numpy as np
 import json
 import time
 from typing import List, Dict, Any
-from ..core.config import Config, logger
-from .image import extract_visual_features, extract_text_async
+from ..core.config import Config, logger, parse_llm_response
+from .image import extract_visual_features, extract_text_async 
 
 class AppState:
     def __init__(self):
@@ -46,22 +46,10 @@ class AppState:
                 logger.error(f"Error initializing OCR: {str(e)}", exc_info=True)
                 raise
 
-def clean_json_string(s: str) -> str:
-    s = s.strip().strip('"')
-    s = s.replace('\\_', '_')
-    s = s.replace('\_', '_')
-    s = s.replace('\\"', '"')
-    
-    if '{' in s:
-        s = s[s.find('{'):s.rfind('}')+1]
-    
-    logger.debug(f"Cleaned JSON string: {s}")
-    return s
-
-async def process_element_batch(images: List[Image.Image], app_state: AppState) -> List[Dict[str, Any]]:
+async def process_element_batch(images: List[Image.Image], app_state: AppState, user_prompt: str = "") -> List[Dict[str, Any]]:
     batch_start = time.time()
     batch_id = f"batch_{int(batch_start)}"
-    logger.info(f"[{batch_id}] Starting batch processing of {len(images)} images")
+    logger.info(f"[{batch_id}] Starting batch processing")
 
     feature_futures = [
         app_state.thread_pool.submit(extract_visual_features, np.array(img))
@@ -69,60 +57,53 @@ async def process_element_batch(images: List[Image.Image], app_state: AppState) 
     ]
     
     ocr_futures = [extract_text_async(img, app_state.reader) for img in images]
-    
+
     sampling_params = SamplingParams(
         temperature=0.1,
-        max_tokens=128,
+        max_tokens=256,
         top_p=0.95
     )
-    
+
     prompts = [
-        {"prompt": Config.get_prompt(), "multi_modal_data": {"image": img}}
+        {
+            "prompt": Config.get_prompt(user_prompt),
+            "multi_modal_data": {
+                "image": img
+            }
+        }
         for img in images
     ]
-    
+
     try:
-        logger.info(f"[{batch_id}] Starting LLM analysis")
-        llm_start = time.time()
-        
         llm_future = asyncio.to_thread(
             lambda: app_state.llm.generate(prompts, sampling_params=sampling_params)
         )
         
         llm_outputs, *ocr_outputs = await asyncio.gather(
-            llm_future,
+            llm_future, 
             *ocr_futures
         )
         
-        llm_duration = time.time() - llm_start
-        logger.info(f"[{batch_id}] LLM analysis completed in {llm_duration:.2f}s")
-        
-    except Exception as e:
-        logger.error(f"[{batch_id}] Error during parallel processing: {str(e)}", exc_info=True)
-        raise
+        for idx, output in enumerate(llm_outputs):
+            if hasattr(output, 'outputs') and output.outputs:
+                logger.debug(f"[{batch_id}] Raw LLM output {idx}: {output.outputs[0].text}")
 
-    try:
         visual_features = [future.result() for future in feature_futures]
-        semantic_features = [
-            json.loads(output.outputs[0].text) if output.outputs[0].text.strip() else {}
-            for output in llm_outputs
-        ]
-
-        results = [
-            {
+        
+        results = []
+        for vf, llm_output, ocr in zip(visual_features, llm_outputs, ocr_outputs):
+            semantic = parse_llm_response(llm_output.outputs[0].text) if hasattr(llm_output, 'outputs') and llm_output.outputs else {}
+            match_score = semantic.get("match", {}).get("score", 0.0)
+                    
+            results.append({
                 "visual": vf,
-                "semantic": sf,  
-                "text": ocr
-            }
-            for vf, sf, ocr in zip(visual_features, semantic_features, ocr_outputs)
-        ]
-        
-        batch_duration = time.time() - batch_start
-        logger.info(f"[{batch_id}] Batch processing completed in {batch_duration:.2f}s")
-        logger.debug(f"[{batch_id}] Batch results: {json.dumps(results, indent=2)}")
-        
+                "semantic": semantic,
+                "text": ocr if isinstance(ocr, str) else "",
+                "match_score": match_score  
+            })
+
         return results
-        
+
     except Exception as e:
-        logger.error(f"[{batch_id}] Error combining results: {str(e)}", exc_info=True)
-        raise
+        logger.error(f"[{batch_id}] Batch processing error: {e}")
+        return [{"error": str(e)}] * len(images)

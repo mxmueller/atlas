@@ -9,10 +9,10 @@ import torch
 import asyncio
 from vllm import SamplingParams 
 
+
 from app.core.config import Config, logger
 from app.models.schemas import UIElement, UIElementMatchInput, UIElementMatch
-from app.processors.analyzer import AppState, process_element_batch, clean_json_string
-
+from app.processors.analyzer import AppState, process_element_batch
 
 app = FastAPI(title="UI Element Analysis API")
 app_state = AppState()
@@ -47,10 +47,10 @@ async def health_check():
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/analyze-batch")
-async def analyze_batch(files: List[UploadFile]) -> List[Dict[str, Any]]:
+async def analyze_batch(files: List[UploadFile], user_prompt: str = "") -> List[Dict[str, Any]]:
     start_time = time.time()
     request_id = f"req_{int(start_time)}"
-    logger.info(f"[{request_id}] Received batch analysis request for {len(files)} files")
+    logger.info(f"[{request_id}] Received batch analysis request for {len(files)} files with prompt: {user_prompt}")
     
     if not files:
         logger.error(f"[{request_id}] No files provided")
@@ -82,7 +82,6 @@ async def analyze_batch(files: List[UploadFile]) -> List[Dict[str, Any]]:
         logger.error(f"[{request_id}] No valid images found in request")
         raise HTTPException(status_code=400, detail="No valid images provided")
     
-    # Process images in batches
     batches = [images[i:i + Config.BATCH_SIZE] 
               for i in range(0, len(images), Config.BATCH_SIZE)]
     
@@ -92,7 +91,7 @@ async def analyze_batch(files: List[UploadFile]) -> List[Dict[str, Any]]:
     for batch_idx, batch in enumerate(batches):
         try:
             logger.info(f"[{request_id}] Processing batch {batch_idx + 1}/{len(batches)}")
-            batch_results = await process_element_batch(batch, app_state)
+            batch_results = await process_element_batch(batch, app_state, user_prompt)
             results.extend(batch_results)
             logger.debug(f"[{request_id}] Successfully processed batch {batch_idx + 1}")
         except Exception as e:
@@ -101,7 +100,9 @@ async def analyze_batch(files: List[UploadFile]) -> List[Dict[str, Any]]:
     
     duration = time.time() - start_time
     logger.info(f"[{request_id}] Completed batch analysis in {duration:.2f}s")
-    return results
+    
+    sorted_results = sorted(results, key=lambda x: x.get('match_score', 0.0), reverse=True)
+    return sorted_results
 
 @app.post("/match-ui-element", response_model=UIElementMatch)
 async def match_ui_element(input_data: UIElementMatchInput) -> UIElementMatch:
@@ -163,43 +164,35 @@ ASSISTANT:"""
         )
 
         raw_response = llm_output[0].outputs[0].text
-        logger.info(f"[{request_id}] Raw LLM response: {raw_response}")
-        logger.info(f"[{request_id}] LLM output structure: {llm_output}")
-
-        try:
-            logger.info(f"[{request_id}] Starting JSON cleaning...")
-            cleaned_response = clean_json_string(raw_response)
-            logger.info(f"[{request_id}] Cleaned response: {cleaned_response}")
-            result = json.loads(cleaned_response)
-            logger.info(f"[{request_id}] Parsed result: {result}")
+        cleaned_response = clean_json_string(raw_response)
+        result = json.loads(cleaned_response)
+        
+        best_match_index = result.get("best_match_index", -1)
+        
+        if best_match_index >= 0 and best_match_index < len(input_data.elements):
+            matched_element = input_data.elements[best_match_index]
+        else:
+            matched_element = {}
+        
+        response = UIElementMatch(
+            element=matched_element,
+            confidence=result.get("confidence", 0.0),
+            reasoning=result.get("reasoning", "No matching element found")
+        )
+        
+        duration = time.time() - start_time
+        logger.info(f"[{request_id}] Matching completed in {duration:.2f}s")
+        logger.debug(f"[{request_id}] Match result: {response}")
+        
+        return response
             
-            best_match_index = result.get("best_match_index", -1)
-            logger.info(f"[{request_id}] Best match index: {best_match_index}")
-            
-            if best_match_index >= 0 and best_match_index < len(input_data.elements):
-                matched_element = input_data.elements[best_match_index]
-            else:
-                matched_element = {}
-            
-            response = UIElementMatch(
-                element=matched_element,
-                confidence=result.get("confidence", 0.0),
-                reasoning=result.get("reasoning", "No matching element found")
-            )
-            
-            duration = time.time() - start_time
-            logger.info(f"[{request_id}] Matching completed in {duration:.2f}s")
-            logger.debug(f"[{request_id}] Match result: {response}")
-            
-            return response
-            
-        except json.JSONDecodeError as e:
-            logger.error(f"[{request_id}] Failed to parse LLM response: {str(e)}")
-            logger.error(f"[{request_id}] Raw response was: {raw_response}")
-            raise HTTPException(
-                status_code=500,
-                detail=f"Failed to parse LLM response: {str(e)}"
-            )
+    except json.JSONDecodeError as e:
+        logger.error(f"[{request_id}] Failed to parse LLM response: {str(e)}")
+        logger.error(f"[{request_id}] Raw response was: {raw_response}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to parse LLM response: {str(e)}"
+        )
 
     except Exception as e:
         logger.error(f"[{request_id}] Error during matching: {str(e)}", exc_info=True)

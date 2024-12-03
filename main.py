@@ -1,4 +1,4 @@
-from fastapi import FastAPI, File, UploadFile, HTTPException, BackgroundTasks
+from fastapi import FastAPI, File, UploadFile, HTTPException, Query
 from typing import Dict, List, Any
 from PIL import Image
 from vllm import LLM, SamplingParams
@@ -189,42 +189,27 @@ def extract_visual_features(image: np.ndarray) -> Dict[str, Any]:
             "error": str(e)
         }
 
-async def process_element_batch(images: List[Image.Image]) -> List[Dict[str, Any]]:
-    """Process a batch of images with enhanced logging and error handling"""
+
+async def process_element_batch(images: List[Image.Image], user_prompt: str = "") -> List[Dict[str, Any]]:
     batch_start = time.time()
     batch_id = f"batch_{int(batch_start)}"
-    logger.info(f"[{batch_id}] Starting batch processing of {len(images)} images")
+    logger.info(f"[{batch_id}] Starting batch processing of {len(images)} images with prompt: {user_prompt}")
 
-    if app_state.llm is None or app_state.reader is None:
-        logger.error(f"[{batch_id}] Models not initialized!")
-        try:
-            app_state.initialize()
-            if app_state.llm is None or app_state.reader is None:
-                raise ValueError("Failed to initialize required models")
-        except Exception as e:
-            logger.error(f"[{batch_id}] Initialization failed: {str(e)}", exc_info=True)
-            raise HTTPException(status_code=500, detail="Failed to initialize models")
-
-    # Parallel feature extraction
-    logger.info(f"[{batch_id}] Starting parallel visual feature extraction")
     feature_futures = [
         app_state.thread_pool.submit(extract_visual_features, np.array(img))
         for img in images
     ]
     
-    # Parallel OCR processing
-    logger.info(f"[{batch_id}] Starting parallel OCR processing")
     ocr_futures = [extract_text_async(img, app_state.reader) for img in images]
     
-    # LLM analysis setup
     sampling_params = SamplingParams(
         temperature=0.1,
-        max_tokens=128,
+        max_tokens=256,
         top_p=0.95
     )
     
     prompts = [
-        {"prompt": get_minimal_analysis_prompt(), "multi_modal_data": {"image": img}}
+        {"prompt": Config.get_prompt(user_prompt), "multi_modal_data": {"image": img}}
         for img in images
     ]
     
@@ -232,12 +217,10 @@ async def process_element_batch(images: List[Image.Image]) -> List[Dict[str, Any
         logger.info(f"[{batch_id}] Starting LLM analysis")
         llm_start = time.time()
         
-        # Run LLM and OCR analysis in parallel
         llm_future = asyncio.to_thread(
             lambda: app_state.llm.generate(prompts, sampling_params=sampling_params)
         )
         
-        # Wait for all analysis to complete
         llm_outputs, *ocr_outputs = await asyncio.gather(
             llm_future,
             *ocr_futures
@@ -250,21 +233,19 @@ async def process_element_batch(images: List[Image.Image]) -> List[Dict[str, Any
         logger.error(f"[{batch_id}] Error during parallel processing: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Analysis failed: {str(e)}")
 
-    # Combine results
     try:
         visual_features = [future.result() for future in feature_futures]
         semantic_features = [
-            json.loads(output.outputs[0].text) if output.outputs[0].text.strip() else {}
+            json.loads(clean_json_string(output.outputs[0].text)) if output.outputs[0].text.strip() else {}
             for output in llm_outputs
         ]
-        
-        """TODO: add one sentance description"""
 
         results = [
             {
                 "visual": vf,
-                "semantic": sf,  
-                "text": ocr
+                "semantic": sf,
+                "text": ocr,
+                "match_score": sf.get("matches_user_intent", {}).get("score", 0.0) if sf else 0.0
             }
             for vf, sf, ocr in zip(visual_features, semantic_features, ocr_outputs)
         ]
@@ -278,13 +259,14 @@ async def process_element_batch(images: List[Image.Image]) -> List[Dict[str, Any
     except Exception as e:
         logger.error(f"[{batch_id}] Error combining results: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Failed to combine results: {str(e)}")
-
 @app.post("/analyze-batch")
-async def analyze_batch(files: List[UploadFile]) -> List[Dict[str, Any]]:
-    """Analyze batch of UI elements with comprehensive logging"""
+async def analyze_batch(
+    files: List[UploadFile] = File(...),
+    user_prompt: str = Query(default="", description="User prompt for image analysis")
+) -> List[Dict[str, Any]]:
     start_time = time.time()
     request_id = f"req_{int(start_time)}"
-    logger.info(f"[{request_id}] Received batch analysis request for {len(files)} files")
+    logger.info(f"[{request_id}] Received batch analysis request for {len(files)} files with prompt: {user_prompt}")
     
     if not files:
         logger.error(f"[{request_id}] No files provided")
@@ -301,9 +283,7 @@ async def analyze_batch(files: List[UploadFile]) -> List[Dict[str, Any]]:
             image_data = await file.read()
             image = Image.open(io.BytesIO(image_data))
             
-            # Resize if necessary
             if image.size[0] > Config.MAX_IMAGE_SIZE[0] or image.size[1] > Config.MAX_IMAGE_SIZE[1]:
-                logger.debug(f"[{request_id}] Resizing image {idx} from {image.size} to {Config.MAX_IMAGE_SIZE}")
                 image.thumbnail(Config.MAX_IMAGE_SIZE)
             
             images.append(image)
@@ -317,7 +297,6 @@ async def analyze_batch(files: List[UploadFile]) -> List[Dict[str, Any]]:
         logger.error(f"[{request_id}] No valid images found in request")
         raise HTTPException(status_code=400, detail="No valid images provided")
     
-    # Process images in batches
     batches = [images[i:i + Config.BATCH_SIZE] 
               for i in range(0, len(images), Config.BATCH_SIZE)]
     
@@ -327,7 +306,7 @@ async def analyze_batch(files: List[UploadFile]) -> List[Dict[str, Any]]:
     for batch_idx, batch in enumerate(batches):
         try:
             logger.info(f"[{request_id}] Processing batch {batch_idx + 1}/{len(batches)}")
-            batch_results = await process_element_batch(batch)
+            batch_results = await process_element_batch(batch, user_prompt=user_prompt)
             results.extend(batch_results)
             logger.debug(f"[{request_id}] Successfully processed batch {batch_idx + 1}")
         except Exception as e:
@@ -337,35 +316,6 @@ async def analyze_batch(files: List[UploadFile]) -> List[Dict[str, Any]]:
     duration = time.time() - start_time
     logger.info(f"[{request_id}] Completed batch analysis in {duration:.2f}s")
     return results
-
-class UIElementMatchInput(BaseModel):
-    elements: List[Dict[str, Any]]
-    query: str
-
-class UIElementMatch(BaseModel):
-    element: Dict[str, Any]
-    confidence: float
-    reasoning: str
-
-def clean_json_string(s: str) -> str:
-    """Clean and validate JSON string from LLM output."""
-    # Entferne führende/nachfolgende Whitespaces und Anführungszeichen
-    s = s.strip().strip('"')
-    
-    # Entferne unerwünschte Escape-Zeichen
-    s = s.replace('\\_', '_')
-    s = s.replace('\_', '_')
-    
-    # Bereinige Anführungszeichen
-    s = s.replace('\\"', '"')
-    
-    # Versuche nur den JSON-Teil zu extrahieren
-    if '{' in s:
-        s = s[s.find('{'):s.rfind('}')+1]
-    
-    logger.debug(f"Cleaned JSON string: {s}")
-    
-    return s
 
 @app.post("/match-ui-element", response_model=UIElementMatch)
 async def match_ui_element(input_data: UIElementMatchInput) -> UIElementMatch:
