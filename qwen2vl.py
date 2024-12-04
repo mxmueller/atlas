@@ -14,16 +14,24 @@ logging.getLogger("PIL").setLevel(logging.WARNING)
 logging.getLogger("multipart").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
-app = FastAPI()
+class LLMSingleton:
+    _instance = None
 
-llm = LLM(
-    model="Qwen/Qwen2-VL-72B-Instruct-AWQ",
-    trust_remote_code=True,
-    dtype="float16",
-    max_model_len=32768,
-    enforce_eager=True,
-    disable_custom_all_reduce=True,
-)
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super(LLMSingleton, cls).__new__(cls)
+            cls._instance.llm = LLM(
+                model="Qwen/Qwen2-VL-72B-Instruct-AWQ",
+                trust_remote_code=True,
+                dtype="float16",
+                max_model_len=32768,
+                enforce_eager=True,
+                disable_custom_all_reduce=True,
+            )
+        return cls._instance
+
+app = FastAPI()
+llm = LLMSingleton().llm
 
 def create_analysis_prompt() -> str:
     base_prompt = (
