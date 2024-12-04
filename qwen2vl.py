@@ -7,6 +7,7 @@ from vllm import LLM, SamplingParams
 import uvicorn
 import logging
 import torch.distributed as dist
+import json
 
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("PIL").setLevel(logging.WARNING)
@@ -16,41 +17,49 @@ logging.getLogger("urllib3").setLevel(logging.WARNING)
 app = FastAPI()
 
 llm = LLM(
-    model="Qwen/Qwen2-VL-72B-Instruct-AWQ", 
+    model="Qwen/Qwen2-VL-72B-Instruct-AWQ",
     trust_remote_code=True,
     dtype="float16",
     max_model_len=32768,
     enforce_eager=True,
     disable_custom_all_reduce=True,
-    max_num_seqs=1,
 )
 
-@app.post("/generate")
-async def generate_response(image: UploadFile = File(...), prompt: str = Form(...)):
+def create_analysis_prompt() -> str:
+    base_prompt = (
+        "<|im_start|>system\n"
+        "You are a precise UI element analyzer. Extract information ONLY from what you can see.\n"
+        "<|im_end|>\n"
+        "<|im_start|>user\n"
+        "Example output format:\n"
+        "{\n"
+        '    "type": "button|icon|text|input",\n'
+        '    "text": "exact text if present, null if none",\n'
+        '    "visual_elements": ["icon names or descriptions if present else put none"],\n'
+        '    "primary_function": "main purpose based on visual evidence only make two sentence",\n'
+        '    "dominant_color": "main color if clearly visible, null if unclear"\n'
+        "}\n\n"
+    )
+    
+    return (
+        f"{base_prompt}"
+        "<|vision_start|>"
+        "<|image_pad|>"
+        "<|vision_end|>\n"
+        "Analyze this UI element and return valid JSON only.\n"
+        "<|im_end|>\n"
+        "<|im_start|>assistant\n"
+    )
+
+@app.post("/analyze")
+async def analyze_ui_element(
+    image: UploadFile = File(...)
+):
     try:
-        # Read image
         image_content = await image.read()
         
-        # Convert to base64
-        img_base64 = base64.b64encode(image_content).decode('utf-8')
-        
-        # Create prompt exactly as in the example
-        prompt_text = (
-            "<|im_start|>system\n"
-            "You are a helpful assistant.\n"
-            "<|im_end|>\n"
-            "<|im_start|>user\n"
-            "<|vision_start|>"
-            "<|image_pad|>"  # Important: This tag is needed
-            "<|vision_end|>\n"
-            f"{prompt}"
-            "<|im_end|>\n"
-            "<|im_start|>assistant\n"
-        )
-        
-        # Create input with multimodal data
         inputs = {
-            "prompt": prompt_text,
+            "prompt": create_analysis_prompt(),
             "multi_modal_data": {
                 "image": Image.open(io.BytesIO(image_content)).convert("RGB")
             }
@@ -63,8 +72,13 @@ async def generate_response(image: UploadFile = File(...), prompt: str = Form(..
                 max_tokens=512
             )
         )
-        
-        return JSONResponse(content={"response": outputs[0].outputs[0].text})
+
+        try:
+            response_text = outputs[0].outputs[0].text
+            parsed_json = json.loads(response_text)
+            return JSONResponse(content=parsed_json)
+        except json.JSONDecodeError:
+            return JSONResponse(content={"error": "Invalid JSON response", "raw_response": response_text})
         
     except Exception as e:
         logging.error(f"Error: {e}", exc_info=True)
