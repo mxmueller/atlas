@@ -4,7 +4,6 @@ import io
 from typing import List, Union
 
 def test_api(image_paths: Union[str, List[str]], user_context=""):
-    # Konvertiere einzelnen Pfad in Liste
     if isinstance(image_paths, str):
         image_paths = [image_paths]
     
@@ -47,5 +46,6 @@ if __name__ == "__main__":
         "./examples/next.png",
         "./examples/home.png",
         "./examples/radio.png",
-        "./examples/store.png"
+        "./examples/store.png",
+        "./examples/herunterladen.png"
     ])
