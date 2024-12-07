@@ -1,30 +1,28 @@
 from PIL import Image, ImageDraw
 from typing import List, Dict
-from config.settings import VISUALIZATION_COLORS
 
 class UIVisualizer:
-    def visualize_results(self, image: Image.Image, detections: List[Dict]) -> Image.Image:
+    def visualize_results(self, image: Image.Image, detections: List[Dict], containers: List[Dict] = None) -> Image.Image:
         draw_image = image.copy()
-        draw = ImageDraw.Draw(draw_image)
+        draw = ImageDraw.Draw(draw_image, 'RGBA')
+        
+        if containers:
+            for container in containers:
+                box = container['box']
+                draw.rectangle(box, fill=(100, 100, 255, 50), outline=(100, 100, 255, 200), width=2)
         
         for det in detections:
             box = det['box']
             label = det['label'].lower()
             score = det['score']
             
-            color = VISUALIZATION_COLORS['default']
-            for key in VISUALIZATION_COLORS:
-                if key in label:
-                    color = VISUALIZATION_COLORS[key]
-                    break
-            
-            draw.rectangle(box, outline=color, width=2)
+            draw.rectangle(box, outline=(255, 100, 100), width=2)
             
             text = f"{label}: {score:.2f}"
             text_bbox = draw.textbbox((box[0], box[1]-20), text)
             draw.rectangle((text_bbox[0]-3, text_bbox[1]-3, text_bbox[2]+3, text_bbox[3]+3),
                          fill=(0, 0, 0))
-            draw.text((box[0], box[1]-20), text, fill=color)
+            draw.text((box[0], box[1]-20), text, fill=(255, 100, 100))
         
         return draw_image
 
