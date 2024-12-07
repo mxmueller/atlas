@@ -2,9 +2,62 @@ from typing import List, Dict
 from config.settings import TEXT_DETECTION_PARAMS, LAYOUT_PATTERNS
 
 class LayoutProcessor:
+    def calculate_iou(self, box1, box2):
+        x1 = max(box1[0], box2[0])
+        y1 = max(box1[1], box2[1])
+        x2 = min(box1[2], box2[2])
+        y2 = min(box1[3], box2[3])
+        
+        intersection = max(0, x2 - x1) * max(0, y2 - y1)
+        box1_area = (box1[2] - box1[0]) * (box1[3] - box1[1])
+        box2_area = (box2[2] - box2[0]) * (box2[3] - box2[1])
+        
+        return intersection / (box1_area + box2_area - intersection)
+
+    def merge_overlapping_boxes(self, detections: List[Dict], iou_threshold: float = 0.5) -> List[Dict]:
+        if not detections:
+            return []
+            
+        merged = []
+        used = set()
+
+        for i, det1 in enumerate(detections):
+            if i in used:
+                continue
+                
+            current_group = [det1]
+            used.add(i)
+            
+            for j, det2 in enumerate(detections):
+                if j in used or i == j:
+                    continue
+                    
+                if self.calculate_iou(det1['box'], det2['box']) > iou_threshold:
+                    current_group.append(det2)
+                    used.add(j)
+            
+            if current_group:
+                best_score_idx = max(range(len(current_group)), 
+                                   key=lambda x: current_group[x]['score'])
+                best_det = current_group[best_score_idx]
+                unique_labels = []
+                for d in current_group:
+                    if d['label'] not in unique_labels:
+                        unique_labels.append(d['label'])
+                
+                merged.append({
+                    'box': best_det['box'],
+                    'score': best_det['score'],
+                    'label': ' | '.join(unique_labels)
+                })
+        
+        return merged
+
     def process_layout(self, detections: List[Dict]) -> List[Dict]:
         if not detections:
             return []
+            
+        detections = self.merge_overlapping_boxes(detections)
         filtered = self.filter_by_size(detections)
         groups = self.group_by_layout(filtered)
         
