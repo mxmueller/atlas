@@ -3,14 +3,14 @@ MODEL_CONFIG = {
 }
 
 TEXT_DETECTION_PARAMS = {
-    'min_text_length': 2,
-    'max_text_gap': 30,
-    'line_height_tolerance': 8,
-    'word_spacing': 15,
-    'menu_item_max_gap': 40,
-    'paragraph_line_spacing': 5,
-    'list_item_indent': 20,
-    'heading_min_height': 25
+    'min_text_length': 1,        # Reduziert von 2 auf 1 für einzelne Buchstaben/Zahlen
+    'max_text_gap': 50,          # Erhöht von 30 auf 50 für mehr Flexibilität bei Textabständen
+    'line_height_tolerance': 12,  # Erhöht von 8 auf 12 für verschiedene Schriftgrößen
+    'word_spacing': 25,          # Erhöht von 15 auf 25 für großzügigere Wortabstände
+    'menu_item_max_gap': 60,     # Erhöht von 40 auf 60 für Menüeinträge mit größeren Abständen
+    'paragraph_line_spacing': 8,  # Erhöht von 5 auf 8
+    'list_item_indent': 20,      # Bleibt gleich
+    'heading_min_height': 20     # Reduziert von 25 auf 20 für kleinere Überschriften
 }
 
 LAYOUT_PATTERNS = {
@@ -42,7 +42,11 @@ PROMPTS = [
     "a facebook icon. a twitter bird icon. an instagram camera icon. a linkedin icon. a youtube play icon.",
     "a notification bell icon. a warning alert icon. an info icon. a check success icon. an error icon.",
     "a play triangle icon. a pause icon. a stop square icon. a next icon. a previous icon. a volume speaker icon.",
-    "a document file icon. a pdf icon. an image photo icon. a folder icon. an attachment clip icon."
+    "a document file icon. a pdf icon. an image photo icon. a folder icon. an attachment clip icon.",
+    "any word. text content. readable text. visible word. displayed text.",
+    "word on screen. text element. text on page. visible text.",
+    "any text label. any visible word. any readable text. any displayed text.",
+    "text in any font. word in any size. text at any position."
 ]
 
 VISUALIZATION_COLORS = {
