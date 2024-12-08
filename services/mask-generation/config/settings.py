@@ -32,21 +32,13 @@ LAYOUT_PATTERNS = {
 }
 
 PROMPTS = [
-    "a horizontal menu item text. a navigation bar text. a top menu text. a menu item label. a menu bar item.",
-    "a paragraph text. a continuous text block. a multi-line text. a text content block. an article text. a description text.",
-    "a bullet point text. a list item text. a numbered item text. an indented text. a list entry text.",
-    "a button text. a link text. a clickable text. an action text. a menu button text.",
-    "a heading text. a title text. a label text. a caption text. a section text.",
-    "a settings gear icon. a menu hamburger icon. a search magnifying glass icon. a user profile icon. a home icon.",
+    "a button." "a text button", 
+    "a icon. a house icon. a settings gear icon. a menu hamburger icon. a search magnifying glass icon. a user profile icon. a home icon.",
     "a close x icon. a plus add icon. a minus remove icon. a download icon. a share icon. an edit pencil icon.",
     "a facebook icon. a twitter bird icon. an instagram camera icon. a linkedin icon. a youtube play icon.",
     "a notification bell icon. a warning alert icon. an info icon. a check success icon. an error icon.",
     "a play triangle icon. a pause icon. a stop square icon. a next icon. a previous icon. a volume speaker icon.",
     "a document file icon. a pdf icon. an image photo icon. a folder icon. an attachment clip icon.",
-    "any word. text content. readable text. visible word. displayed text.",
-    "word on screen. text element. text on page. visible text.",
-    "any text label. any visible word. any readable text. any displayed text.",
-    "text in any font. word in any size. text at any position."
 ]
 
 VISUALIZATION_COLORS = {
