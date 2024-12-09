@@ -1,13 +1,9 @@
-from src.detector import RefinedUIDetector
+from fastapi import FastAPI
+from api.router import router
 
-def main():
-    detector = RefinedUIDetector()
-    
-    image_path = "./test/screenshots/handelsblatt.png"  # Passe den Pfad zu deinem Bild an
-    output_path = "detected_ui_elements_refined.png"
-    
-    print(f"Starting detection on {image_path}")
-    detector.process_and_visualize(image_path, output_path)
+app = FastAPI()
+app.include_router(router)
 
 if __name__ == "__main__":
-    main()
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
