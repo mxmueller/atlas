@@ -1,0 +1,48 @@
+version: '3.8'
+services:
+  mask-generation:
+    build: 
+      context: ./services/mask-generation
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    depends_on:
+      - redis
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - MAX_CONCURRENT_TASKS=2
+      - GPU_MEMORY_THRESHOLD=0.8
+
+  croupier:
+    build:
+      context: ./services/croupier
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+      - mask-generation
+    volumes:
+      - ./services/croupier:/app
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:

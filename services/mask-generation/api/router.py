@@ -11,6 +11,26 @@ import hashlib
 router = APIRouter()
 detector = RefinedUIDetector()
 
+def is_contained_within(box1, box2):
+    return (box1[0] >= box2[0] and box1[1] >= box2[1] and 
+            box1[2] <= box2[2] and box1[3] <= box2[3])
+
+def find_children(element, all_elements):
+    children = []
+    for potential_child in all_elements:
+        if potential_child['id'] != element['id']:
+            if is_contained_within(potential_child['box'], element['box']):
+                children.append(potential_child)
+    return children
+
+def process_hierarchy(elements):
+    for element in elements:
+        children = find_children(element, elements)
+        element['has_children'] = len(children) > 0
+        element['children_count'] = len(children)
+        if children:
+            element['children'] = children
+
 def get_image_hash(image: Image.Image) -> str:
     data = io.BytesIO()
     image.save(data, format='PNG')
@@ -142,20 +162,26 @@ async def extract_artifacts(file: UploadFile = File(...)):
                 "box": element_box,
                 "position": get_position(element_box),
                 "image": get_cropped_image_base64(image, element_box),
-                "section_id": section_id
+                "section_id": section_id,
+                "has_children": False,
+                "children_count": 0
             }
             
             all_elements.append(element_data)
             section_elements.append(element_data)
+
+        process_hierarchy(section_elements)
         
-        sections.append({
+        section_data = {
             "id": section_id,
             "box": section_box,
             "image": get_cropped_image_base64(image, section_box),
             "position_metadata": get_section_metadata(section_box, image.size[1]),
-            "num_children": len(section_elements),
+            "has_children": bool(section_elements),
+            "children_count": len(section_elements),
             "children": section_elements
-        })
+        }
+        sections.append(section_data)
     
     neighbors = calculate_neighbors(all_elements)
     
