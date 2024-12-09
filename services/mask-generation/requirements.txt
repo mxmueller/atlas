@@ -1,0 +1,10 @@
+# requirements.txt
+numpy>=1.23.5,<2.0.0
+transformers
+pillow
+fastapi
+uvicorn
+redis
+easyocr
+pynvml
+python-multipart
