@@ -5,9 +5,50 @@ import asyncio
 from vllm import SamplingParams
 from tasks.image import process_image  
 from tasks.json import parse_json_response 
+from tasks.prompt import create_normalization_prompt
 from models.llm import LLMSingleton
+from pydantic import BaseModel
+import json
 
 router = APIRouter()
+class PromptRequest(BaseModel):
+    prompt: str
+
+@router.post("/normalize")
+async def normalize_ui_prompt(request: PromptRequest):
+    try:
+        llm_singleton = LLMSingleton()
+        prompt_template = create_normalization_prompt()
+        formatted_prompt = prompt_template.format(request.prompt)
+        
+        print("1. REQUEST:", request.prompt)
+        
+        async with llm_singleton._lock:
+            outputs = llm_singleton.llm.generate(
+                prompts=[formatted_prompt],
+                sampling_params=SamplingParams(temperature=0.1, max_tokens=256)
+            )
+            print("2. VLLM OUTPUT:", outputs)
+            
+            if outputs and len(outputs) > 0:
+                raw_text = outputs[0].outputs[0].text.strip()
+                print("3. RAW TEXT:", raw_text)
+                result = json.loads(raw_text)
+                return JSONResponse(content=result)
+                
+        return JSONResponse(
+            status_code=500,
+            content={"error": "No output from vLLM"}
+        )
+
+    except Exception as e:
+        print(f"ERROR: {str(e)}")
+        import traceback
+        print(f"TRACE: {traceback.format_exc()}")
+        return JSONResponse(
+            status_code=500,
+            content={"error": str(e), "type": type(e).__name__, "trace": traceback.format_exc()}
+        )
 
 @router.post("/analyze")
 async def analyze_ui_element(images: List[UploadFile] = File(...)):

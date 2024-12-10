@@ -1,17 +1,19 @@
 import uvicorn
 import torch.distributed as dist
 from fastapi import FastAPI
-from routes.analysis import router
+from routes.analysis import router as analysis_router
+from routes.prefilter import router as prefilter_router
 from config.settings import settings
 from models.llm import LLMSingleton
 
 def create_app():
     app = FastAPI()
     
-    # Initialize LLM model at startup
     LLMSingleton()
     
-    app.include_router(router)
+    app.include_router(analysis_router, tags=["analysis"])
+    app.include_router(prefilter_router, tags=["prefilter"])
+    
     return app
 
 if __name__ == "__main__":

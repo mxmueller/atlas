@@ -1,61 +1,58 @@
-from fastapi import FastAPI, File, UploadFile, HTTPException
-from motor.motor_asyncio import AsyncIOMotorClient
-import aiohttp
-import hashlib
-from io import BytesIO
-import logging
-from datetime import datetime
+from fastapi import APIRouter, UploadFile, File
+from fastapi.responses import JSONResponse
+from typing import List
+import asyncio
+from vllm import SamplingParams
+from tasks.image import process_image  
+from tasks.json import parse_json_response 
+from models.llm import LLMSingleton
+from pydantic import BaseModel
+from tasks.prompt import create_analysis_prompt, create_normalization_prompt
 
-app = FastAPI()
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+router = APIRouter()
 
-mongo_client = AsyncIOMotorClient("mongodb://mongo:27017")
-db = mongo_client.cache_db
-cache_collection = db.image_cache
+class PromptRequest(BaseModel):
+    prompt: str
 
-MASK_API_URL = "http://mask-generation:8000/api/artifacts"
+@router.post("/normalize")
+async def normalize_ui_prompt(request: PromptRequest):
+    try:
+        llm_singleton = LLMSingleton()
+        prompt_template = create_normalization_prompt()
+        
+        async with llm_singleton._lock:
+            output = llm_singleton.llm.generate(
+                [{"prompt": prompt_template.format(user_input=request.prompt)}],
+                sampling_params=SamplingParams(temperature=0.1, max_tokens=256)
+            )
+        
+        result = await parse_json_response(output.outputs[0].text)
+        return JSONResponse(content=result)
 
-async def get_image_hash(image_bytes: bytes) -> str:
-  return hashlib.md5(image_bytes).hexdigest()
+    except Exception as e:
+        return JSONResponse(
+            status_code=500,
+            content={"error": str(e)}
+        )
 
-@app.on_event("startup")
-async def startup_event():
-   await cache_collection.create_index(
-       "created_at", 
-       expireAfterSeconds=43200  # 12 Stunden
-   )
+@router.post("/analyze")
+async def analyze_ui_element(images: List[UploadFile] = File(...)):
+    try:
+        image_contents = await asyncio.gather(*[image.read() for image in images])
+        batch_inputs = await asyncio.gather(*[process_image(image_content) for image_content in image_contents])
 
-@app.post("/process-image")
-async def process_image(file: UploadFile = File(...)):
-  if not file.content_type.startswith('image/'):
-      raise HTTPException(400, "File must be an image")
-  
-  content = await file.read()
-  image_hash = await get_image_hash(content)
-  
-  cached_result = await cache_collection.find_one({"image_hash": image_hash})
-  if cached_result:
-      logger.info(f"Cache HIT for hash: {image_hash}")
-      return cached_result["result"]
-      
-  logger.info(f"Cache MISS for hash: {image_hash}")
-  async with aiohttp.ClientSession() as session:
-      form = aiohttp.FormData()
-      form.add_field('file', 
-                    BytesIO(content), 
-                    filename=file.filename,
-                    content_type=file.content_type)
-      
-      async with session.post(MASK_API_URL, data=form) as response:
-          if response.status != 200:
-              raise HTTPException(500, "Mask generation failed")
-          result = await response.json()
-          
-  await cache_collection.insert_one({
-      "image_hash": image_hash,
-      "result": result,
-      "created_at": datetime.utcnow()
-  })
-  
-  return result
+        llm_singleton = LLMSingleton()
+        async with llm_singleton._lock:
+            outputs = llm_singleton.llm.generate(
+                batch_inputs,
+                sampling_params=SamplingParams(temperature=0.2, max_tokens=512)
+            )
+
+        results = await asyncio.gather(*[parse_json_response(output.outputs[0].text) for output in outputs])
+        return JSONResponse(content=results[0] if len(results) == 1 else results)
+
+    except Exception as e:
+        return JSONResponse(
+            status_code=500,
+            content={"error": str(e), "type": type(e).__name__}
+        )
