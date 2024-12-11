@@ -4,6 +4,8 @@ from pydantic import BaseModel
 from typing import List, Dict, Any
 import base64
 import asyncio
+from PIL import Image
+import io
 from vllm import SamplingParams
 from tasks.image import process_image
 from tasks.json import parse_json_response
@@ -33,7 +35,26 @@ async def prefilter_sections(request: PrefilterRequest):
         batch_inputs = []
         
         for section in sections:
-            image_data = base64.b64decode(section.image)
+            image_bytes = base64.b64decode(section.image)
+            img_io = io.BytesIO(image_bytes)
+            with Image.open(img_io) as img:
+                img = img.convert("RGB")
+                w, h = img.size
+                pad_w = max(0, 28 - w)
+                pad_h = max(0, 28 - h)
+                
+                if pad_w > 0 or pad_h > 0:
+                    new_w = max(w, 28)
+                    new_h = max(h, 28)
+                    padded_img = Image.new('RGB', (new_w, new_h), 'white')
+                    padded_img.paste(img, (0, 0))
+                    img = padded_img
+                
+                # Convert back to bytes for process_image
+                img_byte_arr = io.BytesIO()
+                img.save(img_byte_arr, format='PNG')
+                image_data = img_byte_arr.getvalue()
+                
             processed = await process_image(image_data)
             processed["prompt"] = create_prefilter_prompt(request.normalized_prompt)
             batch_inputs.append(processed)

@@ -1,0 +1,6 @@
+vllm
+fastapi
+uvicorn
+Pillow
+pydantic
+python-multipart

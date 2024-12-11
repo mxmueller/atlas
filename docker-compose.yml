@@ -1,11 +1,29 @@
 version: '3.8'
 services:
+  qwen2-vl:
+    build: 
+      context: ./services/qwen2-vl
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    volumes:
+      - ./services/qwen2-vl:/app 
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+
   mask-generation:
     build: 
       context: ./services/mask-generation
       dockerfile: Dockerfile
     ports:
-      - "8000:8000"
+      - "8001:8000"
     deploy:
       resources:
         reservations:
@@ -29,6 +47,7 @@ services:
     depends_on:
       - mongo
       - mask-generation
+      - qwen2-vl
     volumes:
       - ./services/croupier:/app
 

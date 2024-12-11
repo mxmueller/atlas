@@ -1,7 +1,7 @@
 import requests
 
 response = requests.post(
-    'http://localhost:8000/prefilter',
+    'http://localhost:8000/api/v1/prefilter',
     json={
         'normalized_prompt': {"type":"button","text":"abbrechen","color":"red","position":"top right"},
         'sections': [{
