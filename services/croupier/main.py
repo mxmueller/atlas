@@ -1,15 +1,13 @@
-from fastapi import FastAPI, File, UploadFile, HTTPException, Form
+from fastapi import FastAPI, File, UploadFile, HTTPException, Form, Query
 from motor.motor_asyncio import AsyncIOMotorClient
 import aiohttp
 import hashlib
 from io import BytesIO
-import logging
 from datetime import datetime
+import base64
+from typing import Dict, List
 
 app = FastAPI()
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
 mongo_client = AsyncIOMotorClient("mongodb://mongo:27017")
 db = mongo_client.cache_db
 cache_collection = db.image_cache
@@ -17,39 +15,118 @@ cache_collection = db.image_cache
 MASK_API_URL = "http://mask-generation:8000/api/artifacts"
 QWEN_API_NORMALIZE_URL = "http://qwen2-vl:8000/api/v1/normalize"
 QWEN_API_FILTER_URL = "http://qwen2-vl:8000/api/v1/prefilter"
-QWEN_API_MATCH_URL = "http://qwen2-vl:8000/api/v1/match"
+QWEN_API_ANALYZE_URL = "http://qwen2-vl:8000/api/v1/analyze"
+
+def clean_nested_children(section):
+    result = section.copy()
+    if "children" in result:
+        cleaned_children = []
+        for child in result["children"]:
+            cleaned_child = {k: v for k, v in child.items() 
+                           if k not in ["has_children", "children_count", "children"]}
+            cleaned_child.pop("score", None)
+            cleaned_child.pop("label", None)
+            cleaned_children.append(cleaned_child)
+        result["children"] = cleaned_children
+    return result
+
+def prepare_section_for_json(section: Dict) -> Dict:
+    result = section.copy()
+    if result.get("has_children") and "children" in result:
+        cleaned_children = []
+        for child in result["children"]:
+            child_copy = child.copy()
+            if "neighbors" in child_copy:
+                for direction, neighbor in child_copy["neighbors"].items():
+                    if neighbor is not None and isinstance(neighbor, dict):
+                        child_copy["neighbors"][direction] = {
+                            "id": neighbor["id"],
+                            "box": neighbor["box"],
+                            "type": neighbor.get("type"),
+                            "text": neighbor.get("text"),
+                            "visual_elements": neighbor.get("visual_elements"),
+                            "dominant_color": neighbor.get("dominant_color")
+                        }
+            cleaned_children.append(child_copy)
+        result["children"] = cleaned_children
+    return result
+
+def prepare_mask_result_for_json(mask_result: Dict) -> Dict:
+    result = mask_result.copy()
+    result["sections"] = [prepare_section_for_json(section) for section in result["sections"]]
+    return result
 
 async def get_image_hash(image_bytes: bytes) -> str:
     return hashlib.md5(image_bytes).hexdigest()
 
-def resolve_neighbors(element, all_elements):
-    neighbors = {
-        "left": None,
-        "right": None,
-        "above": None,
-        "below": None
-    }
-    
-    if 'neighbors' in element:
-        for direction in ['left', 'right', 'above', 'below']:
-            neighbor_id = element['neighbors'].get(direction)
-            if neighbor_id:
-                neighbor = next((e for e in all_elements if e['id'] == neighbor_id), None)
-                if neighbor:
-                    neighbors[direction] = {
-                        'id': neighbor['id'],
-                        'type': 'button',
-                        'text': neighbor.get('label', ''),
-                        'visual_elements': [],
-                        'primary_function': neighbor.get('label', ''),
-                        'dominant_color': '',
-                        'neighbours': {}
-                    }
-    return neighbors
+def build_section_map(sections: List[Dict]) -> Dict:
+    section_map = {}
+    def add_section_recursive(section: Dict):
+        section_map[section["id"]] = section
+        if section.get("has_children") and section.get("children"):
+            for child in section["children"]:
+                add_section_recursive(child)
+    for section in sections:
+        add_section_recursive(section)
+    return section_map
 
-async def process_sections(mask_result, normalized_prompt):
-    filtered_sections = []
+async def analyze_sections(sections: List[Dict]) -> List[Dict]:
+    if not sections:
+        return []
     
+    async with aiohttp.ClientSession() as session:
+        data = aiohttp.FormData()
+        for i, section in enumerate(sections):
+            if "image" in section:
+                image_bytes = base64.b64decode(section["image"])
+                data.add_field('images', image_bytes, filename=f'image{i}.jpg', content_type='image/jpeg')
+
+        async with session.post(QWEN_API_ANALYZE_URL, data=data) as response:
+            if response.status != 200:
+                error_body = await response.text()
+                raise HTTPException(500, f"Analysis failed: {error_body}")
+                
+            results = await response.json()
+            if not isinstance(results, list):
+                results = [results]
+                
+            for section, result in zip(sections, results):
+                section.update({
+                    "type": result.get("type"),
+                    "text": result.get("text"), 
+                    "visual_elements": result.get("visual_elements"),
+                    "primary_function": result.get("primary_function"),
+                    "dominant_color": result.get("dominant_color")
+                })
+                section.pop("score", None)
+                section.pop("label", None)
+                
+                if section.get("children"):
+                    for child in section["children"]:
+                        if isinstance(child, dict):
+                            child.pop("score", None)
+                            child.pop("label", None)
+                            child.pop("has_children", None)
+                            child.pop("children_count", None)
+                            child.pop("children", None)
+            
+            return sections
+
+def resolve_children_neighbors(mask_result: Dict, section_map: Dict):
+    for section in mask_result["sections"]:
+        if section.get("has_children") and "children" in section:
+            for child in section["children"]:
+                if "neighbors" in child:
+                    for direction in ["left", "right", "above", "below"]:
+                        if child["neighbors"][direction]:
+                            neighbor_id = child["neighbors"][direction]
+                            if neighbor_id in section_map:
+                                child["neighbors"][direction] = section_map[neighbor_id]
+
+async def process_sections(mask_result: Dict, normalized_prompt: str):
+    section_map = build_section_map(mask_result["sections"])
+    filtered_sections = []
+
     async with aiohttp.ClientSession() as session:
         for section in mask_result["sections"]:
             data = {
@@ -59,7 +136,6 @@ async def process_sections(mask_result, normalized_prompt):
                     "image": section["image"]
                 }]
             }
-            
             async with session.post(QWEN_API_FILTER_URL, json=data) as response:
                 if response.status != 200:
                     continue
@@ -67,66 +143,28 @@ async def process_sections(mask_result, normalized_prompt):
                 if result["results"][0]["likely_contains"]:
                     filtered_sections.append(section)
 
-    elements_for_matching = []
+    resolve_children_neighbors(mask_result, section_map)
+
+    sections_to_analyze = []
     for section in filtered_sections:
-        if not section.get('children'):
-            continue
-            
-        for child in section['children']:
-            if child.get('children_count', 0) > 0:
-                continue
-                
-            element = {
-                'id': child['id'],
-                'type': 'button',
-                'text': child.get('label', ''),
-                'visual_elements': [],
-                'primary_function': child.get('label', ''),
-                'dominant_color': 'red',  # Default
-                'neighbours': resolve_neighbors(child, section['children']),
-                'image': child.get('image')
-            }
-            print("DEBUG - Element structure:", element)
-            
-            element['neighbours'] = resolve_neighbors(child, section['children'])
-            elements_for_matching.append(element)
+        sections_to_analyze.append(section)
+        if section.get("has_children") and section.get("children"):
+            for child in section["children"]:
+                sections_to_analyze.append(child)
 
-    if not elements_for_matching:
-        return None
+    analyzed_sections = await analyze_sections(sections_to_analyze)
+    for section in analyzed_sections:
+        section_map[section["id"]] = section
 
-    async with aiohttp.ClientSession() as session:
-        match_data = {
-            "normalized_prompt": {
-                "type": normalized_prompt.get("type", "button"),
-                "text": normalized_prompt.get("text", ""),
-                "color": normalized_prompt.get("color", ""),
-                "position": normalized_prompt.get("position", "")
-            },
-            "elements": elements_for_matching
-        }
-        print("DEBUG - Full match request:", match_data)
-        
-        async with session.post(QWEN_API_MATCH_URL, json=match_data) as response:
-            if response.status != 200:
-                return None
-                
-            match_result = await response.json()
-            matched_element = next(
-                (e for e in elements_for_matching if e['id'] == match_result['match_id']),
-                None
-            )
-            
-            if matched_element:
-                return {
-                    'match_id': match_result['match_id'],
-                    'confidence_score': match_result['confidence_score'],
-                    'image': matched_element['image']
-                }
-
-    return None
+    return {
+        "filtered_section_ids": [section["id"] for section in filtered_sections],
+        "analyzed_section_ids": [section["id"] for section in analyzed_sections]
+    }
 
 @app.post("/process-image")
-async def process_image(file: UploadFile = File(...), prompt: str = Form(...)):
+async def process_image(file: UploadFile = File(...), prompt: str = Form(...),
+    include_mask: bool = Query(False), analyzed_data: bool = Query(False)):
+    
     if not file.content_type.startswith('image/'):
         raise HTTPException(400, "File must be an image")
     
@@ -135,21 +173,14 @@ async def process_image(file: UploadFile = File(...), prompt: str = Form(...)):
     
     cached_result = await cache_collection.find_one({"image_hash": image_hash})
     if cached_result:
-        logger.info(f"Cache HIT for hash: {image_hash}")
         mask_result = cached_result["result"]
     else:
-        logger.info(f"Cache MISS for hash: {image_hash}")
         async with aiohttp.ClientSession() as session:
             form = aiohttp.FormData()
-            form.add_field('file', 
-                        BytesIO(content), 
-                        filename=file.filename,
-                        content_type=file.content_type)
+            form.add_field('file', BytesIO(content), filename=file.filename, content_type=file.content_type)
             
             async with session.post(MASK_API_URL, data=form) as response:
                 if response.status != 200:
-                    error_content = await response.text()
-                    logger.error(f"Mask generation failed with status {response.status}: {error_content}")
                     raise HTTPException(500, "Mask generation failed")
                 mask_result = await response.json()
                 
@@ -160,16 +191,25 @@ async def process_image(file: UploadFile = File(...), prompt: str = Form(...)):
             })
 
     async with aiohttp.ClientSession() as session:
-        logger.info(f"Normalizing prompt: {prompt}")
         async with session.post(QWEN_API_NORMALIZE_URL, json={"prompt": prompt}) as response:
             if response.status != 200:
-                error_content = await response.text()
-                logger.error(f"Prompt normalization failed with status {response.status}: {error_content}")
                 raise HTTPException(500, "Prompt normalization failed")
             normalized_prompt = await response.json()
 
-    final_result = await process_sections(mask_result, normalized_prompt)
-    if not final_result:
-        raise HTTPException(404, "No matching element found")
+    process_result = await process_sections(mask_result, normalized_prompt)
+    filtered_ids = process_result["filtered_section_ids"]
+    analyzed_ids = process_result["analyzed_section_ids"]
+    
+    response = {"filtered_section_ids": filtered_ids}
+    
+    if analyzed_data:
+        analyzed_sections = []
+        for section in mask_result["sections"]:
+            if section["id"] in analyzed_ids:
+                analyzed_sections.append(prepare_section_for_json(section))
+        response["analyzed_data"] = analyzed_sections
         
-    return final_result
+    if include_mask:
+        response["mask_result"] = prepare_mask_result_for_json(mask_result)
+        
+    return response

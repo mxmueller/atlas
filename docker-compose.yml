@@ -43,7 +43,7 @@ services:
       context: ./services/croupier
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+      - "9999:8080"
     depends_on:
       - mongo
       - mask-generation
