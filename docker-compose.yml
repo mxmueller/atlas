@@ -38,9 +38,9 @@ services:
       - MAX_CONCURRENT_TASKS=2
       - GPU_MEMORY_THRESHOLD=0.8
 
-  croupier:
+  workflow-engine:
     build:
-      context: ./services/croupier
+      context: ./services/workflow-engine
       dockerfile: Dockerfile
     ports:
       - "9999:8080"
@@ -49,7 +49,7 @@ services:
       - mask-generation
       - qwen2-vl
     volumes:
-      - ./services/croupier:/app
+      - ./services/workflow-engine:/app
 
   redis:
     image: redis:alpine
