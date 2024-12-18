@@ -16,6 +16,92 @@ MASK_API_URL = "http://mask-generation:8000/api/artifacts"
 QWEN_API_NORMALIZE_URL = "http://qwen2-vl:8000/api/v1/normalize"
 QWEN_API_FILTER_URL = "http://qwen2-vl:8000/api/v1/prefilter"
 QWEN_API_ANALYZE_URL = "http://qwen2-vl:8000/api/v1/analyze"
+QWEN_API_MATCH_URL = "http://qwen2-vl:8000/api/v1/match"
+
+def prepare_element_for_match(element: Dict) -> Dict:
+    clean_element = {
+        "id": element["id"],
+        "type": element.get("type", ""),
+        "visual_elements": element.get("visual_elements", []),
+        "text": element.get("text"),
+        "dominant_color": element.get("dominant_color", "unknown")
+    }
+    
+    if element.get("primary_function"):
+        clean_element["primary_function"] = element["primary_function"]
+    
+    if "neighbors" in element:
+        clean_neighbors = {}
+        for direction, neighbor in element["neighbors"].items():
+            if neighbor and isinstance(neighbor, dict):
+                neighbor_data = {
+                    "id": neighbor["id"],
+                    "type": neighbor.get("type", ""),
+                    "visual_elements": neighbor.get("visual_elements", []),
+                    "dominant_color": neighbor.get("dominant_color", "unknown"),
+                    "text": neighbor.get("text", "")
+                }
+                if neighbor_data["id"]:
+                    clean_neighbors[direction] = neighbor_data
+        
+        if clean_neighbors:
+            clean_element["neighbors"] = clean_neighbors
+
+    return clean_element
+
+async def process_matches(children: List[Dict], normalized_prompt: str) -> List[Dict]:
+    cleaned_children = [prepare_element_for_match(child) for child in children]
+    
+    batches = []
+    for i in range(0, len(cleaned_children), 5):
+        batch = cleaned_children[i:i + 5]
+        batches.append(batch)
+    
+    matches = []
+    async with aiohttp.ClientSession() as session:
+        for batch_idx, batch in enumerate(batches):
+            data = {
+                "normalized_prompt": normalized_prompt,
+                "elements": batch
+            }
+            
+            try:
+                async with session.post(QWEN_API_MATCH_URL, json=data) as response:
+                    if response.status != 200:
+                        continue
+                        
+                    result = await response.json()
+                    print(f"Match response: {result}")
+                    
+                    if result.get("match_id"):
+                        matched_element = next(
+                            (elem for elem in children if elem["id"] == result["match_id"]), 
+                            None
+                        )
+                        if matched_element:
+                            matches.append(matched_element)
+            except Exception:
+                continue
+    
+    return matches
+
+async def process_match_groups(matches: List[Dict], normalized_prompt: str) -> Dict:
+    if not matches:
+        return None
+        
+    if len(matches) == 1:
+        return matches[0]
+        
+    return await process_matches(matches, normalized_prompt)
+
+async def collect_children_for_matching(filtered_sections: List[Dict]):
+    all_children = []
+    for section in filtered_sections:
+        if section.get("has_children") and section.get("children"):
+            for child in section["children"]:
+                all_children.append(child)
+    
+    return all_children
 
 def clean_nested_children(section):
     result = section.copy()
@@ -118,7 +204,7 @@ def resolve_children_neighbors(mask_result: Dict, section_map: Dict):
             for child in section["children"]:
                 if "neighbors" in child:
                     for direction in ["left", "right", "above", "below"]:
-                        if child["neighbors"][direction]:
+                        if child["neighbors"].get(direction):
                             neighbor_id = child["neighbors"][direction]
                             if neighbor_id in section_map:
                                 child["neighbors"][direction] = section_map[neighbor_id]
@@ -143,18 +229,28 @@ async def process_sections(mask_result: Dict, normalized_prompt: str):
                 if result["results"][0]["likely_contains"]:
                     filtered_sections.append(section)
 
-    resolve_children_neighbors(mask_result, section_map)
-
     sections_to_analyze = []
     for section in filtered_sections:
         sections_to_analyze.append(section)
         if section.get("has_children") and section.get("children"):
             for child in section["children"]:
                 sections_to_analyze.append(child)
+                if "neighbors" in child:
+                    for direction in ["left", "right", "above", "below"]:
+                        if child["neighbors"].get(direction):
+                            neighbor_id = child["neighbors"][direction]
+                            if neighbor_id in section_map:
+                                sections_to_analyze.append(section_map[neighbor_id])
 
     analyzed_sections = await analyze_sections(sections_to_analyze)
+
     for section in analyzed_sections:
         section_map[section["id"]] = section
+
+    for section in analyzed_sections:
+        section_map[section["id"]] = section
+
+    resolve_children_neighbors(mask_result, section_map)
 
     return {
         "filtered_section_ids": [section["id"] for section in filtered_sections],
@@ -191,7 +287,8 @@ async def process_image(file: UploadFile = File(...), prompt: str = Form(...),
             })
 
     async with aiohttp.ClientSession() as session:
-        async with session.post(QWEN_API_NORMALIZE_URL, json={"prompt": prompt}) as response:
+        normalize_data = {"prompt": prompt}
+        async with session.post(QWEN_API_NORMALIZE_URL, json=normalize_data) as response:
             if response.status != 200:
                 raise HTTPException(500, "Prompt normalization failed")
             normalized_prompt = await response.json()
@@ -200,8 +297,18 @@ async def process_image(file: UploadFile = File(...), prompt: str = Form(...),
     filtered_ids = process_result["filtered_section_ids"]
     analyzed_ids = process_result["analyzed_section_ids"]
     
-    response = {"filtered_section_ids": filtered_ids}
+    filtered_sections = [s for s in mask_result["sections"] if s["id"] in filtered_ids]
+    children = await collect_children_for_matching(filtered_sections)
     
+    initial_matches = await process_matches(children, normalized_prompt)
+    final_match = await process_match_groups(initial_matches, normalized_prompt)
+    
+    response = {
+            "filtered_section_ids": filtered_ids,
+            "children_count": len(children),
+            "match": final_match
+        }
+        
     if analyzed_data:
         analyzed_sections = []
         for section in mask_result["sections"]:
