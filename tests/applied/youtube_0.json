@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/youtube.png",
+  "prompt": "Click the Nachrichten Button",
+  "bounding_box": {
+    "x1": 278,
+    "y1": 52,
+    "x2": 374,
+    "y2": 93
+  }
+}

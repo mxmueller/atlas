@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0193.PNG",
+  "prompt": "Click on the white subscribe button",
+  "bounding_box": {
+    "x1": 2140,
+    "y1": 57,
+    "x2": 2331,
+    "y2": 132
+  }
+}

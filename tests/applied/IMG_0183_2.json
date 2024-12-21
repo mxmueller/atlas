@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0183.PNG",
+  "prompt": "Click the Zustimmen button it has a orange background",
+  "bounding_box": {
+    "x1": 341,
+    "y1": 1331,
+    "x2": 2027,
+    "y2": 1411
+  }
+}

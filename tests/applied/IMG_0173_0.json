@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0173.PNG",
+  "prompt": "Click on the settings icon, it has a blue background",
+  "bounding_box": {
+    "x1": 35,
+    "y1": 54,
+    "x2": 160,
+    "y2": 193
+  }
+}

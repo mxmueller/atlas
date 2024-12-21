@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0191.PNG",
+  "prompt": "Give the white button with Skip",
+  "bounding_box": {
+    "x1": 43,
+    "y1": 1451,
+    "x2": 263,
+    "y2": 1583
+  }
+}

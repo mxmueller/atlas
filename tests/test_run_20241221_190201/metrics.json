@@ -1,0 +1,57 @@
+{
+  "summary": {
+    "total_tests": 2,
+    "successful_tests": 1,
+    "failed_tests": 1,
+    "avg_response_time": 42.979606,
+    "avg_distance": 14.508331019803634,
+    "avg_iou": 0.010416666666666666,
+    "avg_confidence": 0.0,
+    "error_types": {
+      "('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))": 1
+    }
+  },
+  "iterations": [
+    {
+      "id": 0,
+      "success": true,
+      "timings": {
+        "start": "2024-12-21 19:02:01.150837",
+        "get_screen": 0.686329,
+        "total": 74.545802
+      },
+      "accuracy": {
+        "distance": 30.01666203960727,
+        "iou": 0.020833333333333332,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 3276,
+        "error": null
+      },
+      "timestamp": "2024-12-21 19:03:15.696751"
+    },
+    {
+      "id": 1,
+      "success": false,
+      "timings": {
+        "start": "2024-12-21 19:03:15.698381",
+        "get_screen": 0.703495,
+        "total": 11.41341
+      },
+      "accuracy": {
+        "distance": -1,
+        "iou": 0.0,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 0,
+        "error": "('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
+      },
+      "timestamp": "2024-12-21 19:03:27.111842"
+    }
+  ],
+  "failures": []
+}

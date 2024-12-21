@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0182.PNG",
+  "prompt": "Click the magnificent glass icon it has a dark blue background",
+  "bounding_box": {
+    "x1": 2241,
+    "y1": 50,
+    "x2": 2355,
+    "y2": 142
+  }
+}

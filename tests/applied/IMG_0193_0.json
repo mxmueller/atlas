@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0193.PNG",
+  "prompt": "Click on the sections text button",
+  "bounding_box": {
+    "x1": 1840,
+    "y1": 1523,
+    "x2": 2024,
+    "y2": 1601
+  }
+}

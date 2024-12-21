@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0182.PNG",
+  "prompt": "Click the text Club Las Piranjas",
+  "bounding_box": {
+    "x1": 923,
+    "y1": 344,
+    "x2": 1403,
+    "y2": 927
+  }
+}

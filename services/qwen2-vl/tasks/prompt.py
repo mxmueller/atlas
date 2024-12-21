@@ -67,20 +67,32 @@ def create_normalization_prompt() -> str:
     )
     return template
 
+
 def create_prefilter_prompt(normalized_prompt: dict) -> str:
     base_prompt = (
         "<|im_start|>system\n"
-        "You are a UI section analyzer. Determine if a UI element could exist in this section.\n"
+        "You are an extremely lenient UI section analyzer. Your goal is to INCLUDE as many potential matches as possible.\n"
+        "IMPORTANT: When in doubt, ALWAYS return true. Only return false if you are 100% certain there is NO possibility of a match.\n"
+        "Matching rules:\n"
+        "- ANY interactive element could be a potential match\n"
+        "- ANY color should be considered similar enough\n"
+        "- Positions are just rough guidelines\n"
+        "- Text matching should allow for variations\n"
+        "- Missing attributes should be ignored completely\n"
+        "- Different shapes/sizes are acceptable\n"
+        "- Different visual styles are acceptable\n"
         "<|im_end|>\n"
         "<|im_start|>user\n"
-        f"Looking for this UI element: {str(normalized_prompt)}\n"
+        f"Find ANY UI elements that could potentially match this description: {str(normalized_prompt)}\n"
+        "Remember: When unsure, include it!\n"
         "<|vision_start|>"
         "<|image_pad|>"
         "<|vision_end|>\n"
-        "Could this section contain the described element? Return only valid JSON:\n"
+        "Could this section contain anything similar? Return JSON:\n"
         "{\n"
         '    "contains": true|false\n'
         "}\n"
+        "REMEMBER: Default to true unless absolutely certain!\n"
         "<|im_end|>\n"
         "<|im_start|>assistant\n"
     )

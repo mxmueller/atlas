@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0174.PNG",
+  "prompt": "Please click on the green button with the text More",
+  "bounding_box": {
+    "x1": 2221,
+    "y1": 1343,
+    "x2": 2310,
+    "y2": 1434
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/home.png",
+  "prompt": "Give me the green Phone App",
+  "bounding_box": {
+    "x1": 145,
+    "y1": 348,
+    "x2": 270,
+    "y2": 512
+  }
+}

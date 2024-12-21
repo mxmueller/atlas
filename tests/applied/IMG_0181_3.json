@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0181.PNG",
+  "prompt": "Give me the button that only contains a User icon it shows a person",
+  "bounding_box": {
+    "x1": 26,
+    "y1": 48,
+    "x2": 118,
+    "y2": 140
+  }
+}

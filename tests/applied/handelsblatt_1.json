@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/handelsblatt.png",
+  "prompt": "Click the Unternehmen Button in The menu bar, its next to Finanzen",
+  "bounding_box": {
+    "x1": 219,
+    "y1": 116,
+    "x2": 334,
+    "y2": 155
+  }
+}

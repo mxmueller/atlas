@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0189.PNG",
+  "prompt": "Give me the text button Die sechs Schw\u00e4ne",
+  "bounding_box": {
+    "x1": 492,
+    "y1": 821,
+    "x2": 914,
+    "y2": 970
+  }
+}

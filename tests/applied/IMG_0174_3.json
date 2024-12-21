@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0174.PNG",
+  "prompt": "Please click on the Play as Guest button that has a red background",
+  "bounding_box": {
+    "x1": 993,
+    "y1": 1504,
+    "x2": 1359,
+    "y2": 1584
+  }
+}

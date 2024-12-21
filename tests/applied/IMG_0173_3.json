@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0173.PNG",
+  "prompt": "Give me the Sign up button",
+  "bounding_box": {
+    "x1": 808,
+    "y1": 1320,
+    "x2": 1568,
+    "y2": 1427
+  }
+}

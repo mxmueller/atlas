@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0184.PNG",
+  "prompt": "give the button with the text Live TV",
+  "bounding_box": {
+    "x1": 623,
+    "y1": 1521,
+    "x2": 815,
+    "y2": 1601
+  }
+}

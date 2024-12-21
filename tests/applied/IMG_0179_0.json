@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0179.PNG",
+  "prompt": "Click on the Blacjack text button",
+  "bounding_box": {
+    "x1": 849,
+    "y1": 135,
+    "x2": 1035,
+    "y2": 226
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0178.PNG",
+  "prompt": "Click the button Meine Inhalte",
+  "bounding_box": {
+    "x1": 1769,
+    "y1": 1486,
+    "x2": 2062,
+    "y2": 1572
+  }
+}

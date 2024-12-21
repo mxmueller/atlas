@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0179.PNG",
+  "prompt": "Click on text button Stock Markets",
+  "bounding_box": {
+    "x1": 1807,
+    "y1": 128,
+    "x2": 2092,
+    "y2": 226
+  }
+}

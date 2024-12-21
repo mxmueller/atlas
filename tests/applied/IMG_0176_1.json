@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0176.PNG",
+  "prompt": "Click on the Text button Podcasts",
+  "bounding_box": {
+    "x1": 506,
+    "y1": 166,
+    "x2": 682,
+    "y2": 224
+  }
+}

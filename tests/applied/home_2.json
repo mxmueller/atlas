@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/home.png",
+  "prompt": "Click on the User Settings icon it shows a person",
+  "bounding_box": {
+    "x1": 807,
+    "y1": 34,
+    "x2": 868,
+    "y2": 97
+  }
+}

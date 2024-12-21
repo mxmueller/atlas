@@ -17,6 +17,7 @@ services:
       - ./services/qwen2-vl:/app 
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
+      - CUDA_LAUNCH_BLOCKING=1
 
   mask-generation:
     build: 

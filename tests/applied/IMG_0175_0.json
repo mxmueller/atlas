@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0175.PNG",
+  "prompt": "Give me the Login Button",
+  "bounding_box": {
+    "x1": 693,
+    "y1": 1453,
+    "x2": 1181,
+    "y2": 1576
+  }
+}

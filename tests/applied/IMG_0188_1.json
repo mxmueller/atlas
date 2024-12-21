@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0188.PNG",
+  "prompt": "Click on the Text Weit. Geschichte von einem Weg um die Welt, it is next to Dancing Queen ABBA",
+  "bounding_box": {
+    "x1": 17,
+    "y1": 815,
+    "x2": 501,
+    "y2": 1428
+  }
+}

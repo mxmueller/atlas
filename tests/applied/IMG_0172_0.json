@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0172.PNG",
+  "prompt": "Click on the green plant button",
+  "bounding_box": {
+    "x1": 1032,
+    "y1": 1410,
+    "x2": 1317,
+    "y2": 1524
+  }
+}

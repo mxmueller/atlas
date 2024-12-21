@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0181.PNG",
+  "prompt": "Give me the blue button with the text mehr dazu",
+  "bounding_box": {
+    "x1": 45,
+    "y1": 828,
+    "x2": 345,
+    "y2": 932
+  }
+}

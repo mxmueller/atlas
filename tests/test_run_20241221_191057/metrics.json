@@ -1,0 +1,55 @@
+{
+  "summary": {
+    "total_tests": 2,
+    "successful_tests": 2,
+    "failed_tests": 0,
+    "avg_response_time": 113.04451399999999,
+    "avg_distance": 9.520797289396148,
+    "avg_iou": 0.019202898550724636,
+    "avg_confidence": 0.0,
+    "error_types": {}
+  },
+  "iterations": [
+    {
+      "id": 0,
+      "success": true,
+      "timings": {
+        "start": "2024-12-21 19:10:57.965300",
+        "get_screen": 0.717734,
+        "total": 118.047234
+      },
+      "accuracy": {
+        "distance": 12.041594578792296,
+        "iou": 0.021739130434782608,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 1839,
+        "error": null
+      },
+      "timestamp": "2024-12-21 19:12:56.012638"
+    },
+    {
+      "id": 1,
+      "success": true,
+      "timings": {
+        "start": "2024-12-21 19:12:56.014189",
+        "get_screen": 0.697039,
+        "total": 108.041794
+      },
+      "accuracy": {
+        "distance": 7.0,
+        "iou": 0.016666666666666666,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2560,
+        "error": null
+      },
+      "timestamp": "2024-12-21 19:14:44.056075"
+    }
+  ],
+  "failures": []
+}

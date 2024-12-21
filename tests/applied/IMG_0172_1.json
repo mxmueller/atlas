@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0172.PNG",
+  "prompt": "Click on the menu icon that it shows thre bars on top of each other, it has a green background",
+  "bounding_box": {
+    "x1": 17,
+    "y1": 57,
+    "x2": 120,
+    "y2": 154
+  }
+}

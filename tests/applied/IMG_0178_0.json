@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0178.PNG",
+  "prompt": "Click the Abspielen button, it also shows a Play icon",
+  "bounding_box": {
+    "x1": 109,
+    "y1": 1118,
+    "x2": 527,
+    "y2": 1267
+  }
+}

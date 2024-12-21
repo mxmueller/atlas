@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/angrybirds.png",
+  "prompt": "Press the Play Now button, its white",
+  "bounding_box": {
+    "x1": 129,
+    "y1": 981,
+    "x2": 325,
+    "y2": 1056
+  }
+}

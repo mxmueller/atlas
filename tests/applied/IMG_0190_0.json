@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0190.PNG",
+  "prompt": "Give the Black Button with the text Subscribe for unlimited access",
+  "bounding_box": {
+    "x1": 828,
+    "y1": 889,
+    "x2": 1531,
+    "y2": 1002
+  }
+}

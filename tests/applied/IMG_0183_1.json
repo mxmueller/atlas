@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0183.PNG",
+  "prompt": "Click the Ablehnen button it has a orange background",
+  "bounding_box": {
+    "x1": 338,
+    "y1": 1417,
+    "x2": 2036,
+    "y2": 1490
+  }
+}
