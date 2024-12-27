@@ -84,37 +84,37 @@ def create_comparison_prompt(base_prompt: dict, elements: List[UIElement]) -> st
 
 @router.post("/match")
 async def match_elements(request: PromptMatch):
-  try:
-      llm_singleton = LLMSingleton()
-      prompt = create_comparison_prompt(
-          request.normalized_prompt,
-          request.elements
-      )
-      
-      async with llm_singleton._lock:
-          output = await llm_singleton.process_request(
-              prompts=[prompt],
-              sampling_params=SamplingParams(
-                  temperature=0.1,
-                  max_tokens=32
-              )
-          )
-          
-          raw_match_id = output[0].outputs[0].text.strip()
-          print(f"\nRaw LLM output: {raw_match_id}")
-          
-          if "none" in raw_match_id.lower() or "no match" in raw_match_id.lower():
-              return {"match_id": False}
-              
-          match_id = raw_match_id.replace('"','').replace("'","").strip()
-          
-          if not any(e.id == match_id for e in request.elements):
-              return {"match_id": False}
-              
-          return {"match_id": match_id}
-          
-  except Exception as e:
-      return {
-          "error": str(e),
-          "type": type(e).__name__
-      }
+   try:
+       llm_singleton = LLMSingleton()
+       prompt = create_comparison_prompt(
+           request.normalized_prompt,
+           request.elements
+       )
+       
+       async with llm_singleton._lock:
+           output = llm_singleton.llm.generate(
+               prompts=[prompt],
+               sampling_params=SamplingParams(
+                   temperature=0.1,
+                   max_tokens=32
+               )
+           )
+           
+           raw_match_id = output[0].outputs[0].text.strip()
+           print(f"\nRaw LLM output: {raw_match_id}")
+           
+           if "none" in raw_match_id.lower() or "no match" in raw_match_id.lower():
+               return {"match_id": False}
+               
+           match_id = raw_match_id.replace('"','').replace("'","").strip()
+           
+           if not any(e.id == match_id for e in request.elements):
+               return {"match_id": False}
+               
+           return {"match_id": match_id}
+           
+   except Exception as e:
+       return {
+           "error": str(e),
+           "type": type(e).__name__
+       }

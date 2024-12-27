@@ -206,7 +206,7 @@ async def analyze_sections(sections: List[Dict]) -> List[Dict]:
         return []
     
     analyzed_sections = []
-    batch_size = 20
+    batch_size = 100
     total_batches = len(sections) // batch_size + (1 if len(sections) % batch_size else 0)
     
     print(f"Starting analysis of {len(sections)} sections in {total_batches} batches")

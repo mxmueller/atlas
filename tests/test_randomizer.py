@@ -2,6 +2,8 @@ import pytest
 import requests
 import json
 import os
+import time
+import docker
 from datetime import datetime
 from io import BytesIO
 import numpy as np
@@ -136,8 +138,29 @@ class TestRunner:
 
 runner = TestRunner()
 
-@pytest.mark.parametrize('iteration', range(2))
+@pytest.mark.parametrize('iteration', range(1000))
 def test_screen(iteration):
+    # Docker restart logic 
+    if iteration > 0 and iteration % 20 == 0:
+        client = docker.from_env()
+        containers = ['atlas_workflow-engine_1', 'atlas_mask-generation_1', 'atlas_qwen2-vl_1']
+        
+        for container_name in containers:
+            container = client.containers.get(container_name)
+            container.restart()
+            
+        max_retries = 30
+        retry_interval = 2
+        for attempt in range(max_retries):
+            try:
+                response = requests.get('http://localhost:8000/api/v1/health', timeout=5)
+                if response.status_code == 200:
+                    break
+            except requests.exceptions.RequestException:
+                if attempt == max_retries - 1:
+                    raise Exception("Service nicht erreichbar nach Timeout")
+                time.sleep(retry_interval)
+
     timings = {'start': datetime.now()}
     bbox = None
     result = None
