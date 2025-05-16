@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0189.PNG",
+  "prompt": "Click on the Suchen button with the magnificent glass icon",
+  "bounding_box": {
+    "x1": 2024,
+    "y1": 1504,
+    "x2": 2243,
+    "y2": 1615
+  }
+}

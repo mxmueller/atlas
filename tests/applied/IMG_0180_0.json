@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0180.PNG",
+  "prompt": "Give the blue button with the text Anmelden",
+  "bounding_box": {
+    "x1": 739,
+    "y1": 1383,
+    "x2": 1049,
+    "y2": 1500
+  }
+}

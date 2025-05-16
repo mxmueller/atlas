@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0173.PNG",
+  "prompt": "Click on the Sign in Button",
+  "bounding_box": {
+    "x1": 800,
+    "y1": 1445,
+    "x2": 1574,
+    "y2": 1558
+  }
+}

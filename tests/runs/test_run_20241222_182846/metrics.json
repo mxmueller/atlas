@@ -1,0 +1,2388 @@
+{
+  "summary": {
+    "total_tests": 100,
+    "successful_tests": 93,
+    "failed_tests": 7,
+    "avg_response_time": 72.38500332000004,
+    "avg_distance": 27.175361015064485,
+    "avg_iou": 0.019145305375693433,
+    "avg_confidence": 0.0,
+    "error_types": {
+      "unknown": 7
+    }
+  },
+  "iterations": [
+    {
+      "id": 0,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 18:28:46.502616",
+        "get_screen": 0.725152,
+        "total": 90.474112
+      },
+      "accuracy": {
+        "distance": 15.556349186104045,
+        "iou": 0.016666666666666666,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2593,
+        "error": null
+      },
+      "timestamp": "2024-12-22 18:30:16.976842"
+    },
+    {
+      "id": 1,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 18:30:16.978444",
+        "get_screen": 0.695348,
+        "total": 63.33717
+      },
+      "accuracy": {
+        "distance": 14.866068747318506,
+        "iou": 0.04,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 1497,
+        "error": null
+      },
+      "timestamp": "2024-12-22 18:31:20.315731"
+    },
+    {
+      "id": 2,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 18:31:20.317434",
+        "get_screen": 0.720496,
+        "total": 79.679994
+      },
+      "accuracy": {
+        "distance": 31.304951684997057,
+        "iou": 0.018867924528301886,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2992,
+        "error": null
+      },
+      "timestamp": "2024-12-22 18:32:39.997557"
+    },
+    {
+      "id": 3,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 18:32:39.999245",
+        "get_screen": 0.702423,
+        "total": 72.996233
+      },
+      "accuracy": {
+        "distance": 41.907636535600524,
+        "iou": 0.013245033112582781,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2863,
+        "error": null
+      },
+      "timestamp": "2024-12-22 18:33:52.995604"
+    },
+    {
+      "id": 4,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 18:33:52.997221",
+        "get_screen": 0.702394,
+        "total": 86.646966
+      },
+      "accuracy": {
+        "distance": 42.25221887664599,
+        "iou": 0.013422818791946308,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 3501,
+        "error": null
+      },
+      "timestamp": "2024-12-22 18:35:19.644288"
+    },
+    {
+      "id": 5,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 18:35:19.645994",
+        "get_screen": 0.699306,
+        "total": 67.847759
+      },
+      "accuracy": {
+        "distance": 13.416407864998739,
+        "iou": 0.03225806451612903,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2180,
+        "error": null
+      },
+      "timestamp": "2024-12-22 18:36:27.493851"
+    },
+    {
+      "id": 6,
+      "success": false,
+      "timings": {
+        "start": "2024-12-22 18:36:27.495596",
+        "get_screen": 0.696316,
+        "total": 57.440523
+      },
+      "accuracy": {
+        "distance": -1,
+        "iou": 0.0,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 72,
+        "error": null
+      },
+      "timestamp": "2024-12-22 18:37:24.936183"
+    },
+    {
+      "id": 7,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 18:37:24.979254",
+        "get_screen": 0.71094,
+        "total": 80.787244
+      },
+      "accuracy": {
+        "distance": 9.848857801796104,
+        "iou": 0.02127659574468085,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2079,
+        "error": null
+      },
+      "timestamp": "2024-12-22 18:38:45.766626"
+    },
+    {
+      "id": 8,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 18:38:45.768494",
+        "get_screen": 0.718725,
+        "total": 72.964937
+      },
+      "accuracy": {
+        "distance": 34.92849839314596,
+        "iou": 0.016666666666666666,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 3401,
+        "error": null
+      },
+      "timestamp": "2024-12-22 18:39:58.733575"
+    },
+    {
+      "id": 9,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 18:39:58.735450",
+        "get_screen": 0.697704,
+        "total": 58.799717
+      },
+      "accuracy": {
+        "distance": 30.01666203960727,
+        "iou": 0.02040816326530612,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2146,
+        "error": null
+      },
+      "timestamp": "2024-12-22 18:40:57.535267"
+    },
+    {
+      "id": 10,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 18:40:57.537220",
+        "get_screen": 0.71159,
+        "total": 46.077173
+      },
+      "accuracy": {
+        "distance": 6.946221994724902,
+        "iou": 0.016260162601626018,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2970,
+        "error": null
+      },
+      "timestamp": "2024-12-22 18:41:43.614486"
+    },
+    {
+      "id": 11,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 18:41:43.616420",
+        "get_screen": 0.697075,
+        "total": 44.995754
+      },
+      "accuracy": {
+        "distance": 35.34119409414458,
+        "iou": 0.016666666666666666,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 3509,
+        "error": null
+      },
+      "timestamp": "2024-12-22 18:42:28.612282"
+    },
+    {
+      "id": 12,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 18:42:28.614279",
+        "get_screen": 0.697618,
+        "total": 74.60601
+      },
+      "accuracy": {
+        "distance": 30.01666203960727,
+        "iou": 0.020833333333333332,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2785,
+        "error": null
+      },
+      "timestamp": "2024-12-22 18:43:43.220397"
+    },
+    {
+      "id": 13,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 18:43:43.222350",
+        "get_screen": 1.002529,
+        "total": 69.216081
+      },
+      "accuracy": {
+        "distance": 33.54101966249684,
+        "iou": 0.017857142857142856,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 3458,
+        "error": null
+      },
+      "timestamp": "2024-12-22 18:44:52.438571"
+    },
+    {
+      "id": 14,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 18:44:52.440597",
+        "get_screen": 0.699302,
+        "total": 84.597434
+      },
+      "accuracy": {
+        "distance": 32.64965543462902,
+        "iou": 0.017857142857142856,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 4049,
+        "error": null
+      },
+      "timestamp": "2024-12-22 18:46:17.038129"
+    },
+    {
+      "id": 15,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 18:46:17.040123",
+        "get_screen": 0.71219,
+        "total": 79.529649
+      },
+      "accuracy": {
+        "distance": 12.806248474865697,
+        "iou": 0.020833333333333332,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 1797,
+        "error": null
+      },
+      "timestamp": "2024-12-22 18:47:36.569868"
+    },
+    {
+      "id": 16,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 18:47:36.571944",
+        "get_screen": 0.693979,
+        "total": 88.077716
+      },
+      "accuracy": {
+        "distance": 18.384776310850235,
+        "iou": 0.024390243902439025,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2368,
+        "error": null
+      },
+      "timestamp": "2024-12-22 18:49:04.649757"
+    },
+    {
+      "id": 17,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 18:49:04.651775",
+        "get_screen": 0.693993,
+        "total": 89.094275
+      },
+      "accuracy": {
+        "distance": 31.32491021535417,
+        "iou": 0.01904761904761905,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2868,
+        "error": null
+      },
+      "timestamp": "2024-12-22 18:50:33.746147"
+    },
+    {
+      "id": 18,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 18:50:33.748262",
+        "get_screen": 0.709928,
+        "total": 45.134151
+      },
+      "accuracy": {
+        "distance": 27.459060435491963,
+        "iou": 0.022727272727272728,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2774,
+        "error": null
+      },
+      "timestamp": "2024-12-22 18:51:18.882549"
+    },
+    {
+      "id": 19,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 18:51:18.884764",
+        "get_screen": 0.722696,
+        "total": 74.994633
+      },
+      "accuracy": {
+        "distance": 33.54101966249684,
+        "iou": 0.017543859649122806,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 4087,
+        "error": null
+      },
+      "timestamp": "2024-12-22 18:52:33.879533"
+    },
+    {
+      "id": 20,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 18:53:38.148490",
+        "get_screen": 0.703126,
+        "total": 42.817565
+      },
+      "accuracy": {
+        "distance": 24.20743687382041,
+        "iou": 0.03125,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2832,
+        "error": null
+      },
+      "timestamp": "2024-12-22 18:54:20.966174"
+    },
+    {
+      "id": 21,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 18:54:20.968186",
+        "get_screen": 0.698016,
+        "total": 94.227268
+      },
+      "accuracy": {
+        "distance": 29.154759474226502,
+        "iou": 0.02127659574468085,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2899,
+        "error": null
+      },
+      "timestamp": "2024-12-22 18:55:55.195595"
+    },
+    {
+      "id": 22,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 18:55:55.197798",
+        "get_screen": 0.698395,
+        "total": 75.06475
+      },
+      "accuracy": {
+        "distance": 6.020797289396148,
+        "iou": 0.01834862385321101,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2481,
+        "error": null
+      },
+      "timestamp": "2024-12-22 18:57:10.262655"
+    },
+    {
+      "id": 23,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 18:57:10.264850",
+        "get_screen": 0.711905,
+        "total": 77.571181
+      },
+      "accuracy": {
+        "distance": 26.92582403567252,
+        "iou": 0.023809523809523808,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2666,
+        "error": null
+      },
+      "timestamp": "2024-12-22 18:58:27.836145"
+    },
+    {
+      "id": 24,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 18:58:27.838464",
+        "get_screen": 0.701316,
+        "total": 70.493719
+      },
+      "accuracy": {
+        "distance": 28.653097563788805,
+        "iou": 0.020833333333333332,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 3005,
+        "error": null
+      },
+      "timestamp": "2024-12-22 18:59:38.332297"
+    },
+    {
+      "id": 25,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 18:59:38.334633",
+        "get_screen": 0.685902,
+        "total": 67.213855
+      },
+      "accuracy": {
+        "distance": 15.337861650177967,
+        "iou": 0.0273972602739726,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2477,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:00:45.548637"
+    },
+    {
+      "id": 26,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:00:45.550991",
+        "get_screen": 0.699785,
+        "total": 86.774181
+      },
+      "accuracy": {
+        "distance": 23.430749027719962,
+        "iou": 0.03125,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 1794,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:02:12.325266"
+    },
+    {
+      "id": 27,
+      "success": false,
+      "timings": {
+        "start": "2024-12-22 19:02:12.327524",
+        "get_screen": 0.703957,
+        "total": 47.029601
+      },
+      "accuracy": {
+        "distance": -1,
+        "iou": 0.0,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 72,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:02:59.357190"
+    },
+    {
+      "id": 28,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:02:59.365097",
+        "get_screen": 0.713686,
+        "total": 88.187659
+      },
+      "accuracy": {
+        "distance": 38.07886552931954,
+        "iou": 0.015625,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 3816,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:04:27.552859"
+    },
+    {
+      "id": 29,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:04:27.555194",
+        "get_screen": 0.705474,
+        "total": 49.046914
+      },
+      "accuracy": {
+        "distance": 30.01666203960727,
+        "iou": 0.02127659574468085,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 3508,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:05:16.602205"
+    },
+    {
+      "id": 30,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:05:16.604628",
+        "get_screen": 0.702566,
+        "total": 43.36459
+      },
+      "accuracy": {
+        "distance": 31.752952618614856,
+        "iou": 0.01834862385321101,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2594,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:05:59.969332"
+    },
+    {
+      "id": 31,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:05:59.971832",
+        "get_screen": 0.699965,
+        "total": 81.974924
+      },
+      "accuracy": {
+        "distance": 32.202484376209235,
+        "iou": 0.017857142857142856,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 4201,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:07:21.946863"
+    },
+    {
+      "id": 32,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:07:21.949294",
+        "get_screen": 0.686938,
+        "total": 87.383839
+      },
+      "accuracy": {
+        "distance": 26.627053911388696,
+        "iou": 0.023809523809523808,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2581,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:08:49.333218"
+    },
+    {
+      "id": 33,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:08:49.335631",
+        "get_screen": 0.713213,
+        "total": 79.609029
+      },
+      "accuracy": {
+        "distance": 40.496913462633174,
+        "iou": 0.013888888888888888,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 3053,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:10:08.944756"
+    },
+    {
+      "id": 34,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:10:08.947225",
+        "get_screen": 0.697893,
+        "total": 88.958616
+      },
+      "accuracy": {
+        "distance": 14.807092894960848,
+        "iou": 0.018018018018018018,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2322,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:11:37.905925"
+    },
+    {
+      "id": 35,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:11:37.908322",
+        "get_screen": 0.68289,
+        "total": 71.093989
+      },
+      "accuracy": {
+        "distance": 13.200378782444085,
+        "iou": 0.015503875968992248,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 1759,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:12:49.002401"
+    },
+    {
+      "id": 36,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:12:49.004800",
+        "get_screen": 0.717043,
+        "total": 79.525018
+      },
+      "accuracy": {
+        "distance": 30.4138126514911,
+        "iou": 0.0196078431372549,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 3600,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:14:08.529911"
+    },
+    {
+      "id": 37,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:14:08.532343",
+        "get_screen": 0.719608,
+        "total": 80.906005
+      },
+      "accuracy": {
+        "distance": 34.471002306286366,
+        "iou": 0.01680672268907563,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 3235,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:15:29.438457"
+    },
+    {
+      "id": 38,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:15:29.441462",
+        "get_screen": 0.706934,
+        "total": 55.324286
+      },
+      "accuracy": {
+        "distance": 33.54101966249684,
+        "iou": 0.017857142857142856,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 4542,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:16:24.765860"
+    },
+    {
+      "id": 39,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:16:24.768488",
+        "get_screen": 0.695149,
+        "total": 76.357692
+      },
+      "accuracy": {
+        "distance": 20.573040611440984,
+        "iou": 0.020618556701030927,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2924,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:17:41.126278"
+    },
+    {
+      "id": 40,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:18:45.383834",
+        "get_screen": 0.724757,
+        "total": 76.814443
+      },
+      "accuracy": {
+        "distance": 39.092838218783754,
+        "iou": 0.014388489208633094,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 4046,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:20:02.198384"
+    },
+    {
+      "id": 41,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:20:02.200873",
+        "get_screen": 0.688814,
+        "total": 93.957106
+      },
+      "accuracy": {
+        "distance": 38.62641583165593,
+        "iou": 0.014492753623188406,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 3207,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:21:36.158099"
+    },
+    {
+      "id": 42,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:21:36.160789",
+        "get_screen": 0.706928,
+        "total": 49.037418
+      },
+      "accuracy": {
+        "distance": 25.656383221335,
+        "iou": 0.025974025974025976,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 1594,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:22:25.198301"
+    },
+    {
+      "id": 43,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:22:25.201055",
+        "get_screen": 0.697258,
+        "total": 66.737371
+      },
+      "accuracy": {
+        "distance": 29.58462438497403,
+        "iou": 0.021505376344086023,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 1743,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:23:31.938550"
+    },
+    {
+      "id": 44,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:23:31.941235",
+        "get_screen": 0.722345,
+        "total": 78.037549
+      },
+      "accuracy": {
+        "distance": 34.88911004883902,
+        "iou": 0.01680672268907563,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2964,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:24:49.978877"
+    },
+    {
+      "id": 45,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:24:49.981617",
+        "get_screen": 0.679921,
+        "total": 66.075191
+      },
+      "accuracy": {
+        "distance": 26.21545345783666,
+        "iou": 0.02531645569620253,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2775,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:25:56.056919"
+    },
+    {
+      "id": 46,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:25:56.059633",
+        "get_screen": 0.71584,
+        "total": 90.216512
+      },
+      "accuracy": {
+        "distance": 43.188540146663904,
+        "iou": 0.013245033112582781,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 4579,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:27:26.276262"
+    },
+    {
+      "id": 47,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:27:26.279200",
+        "get_screen": 0.675271,
+        "total": 76.417456
+      },
+      "accuracy": {
+        "distance": 39.0,
+        "iou": 0.014492753623188406,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 4230,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:28:42.696774"
+    },
+    {
+      "id": 48,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:28:42.699679",
+        "get_screen": 0.768126,
+        "total": 80.202717
+      },
+      "accuracy": {
+        "distance": 16.278820596099706,
+        "iou": 0.01818181818181818,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2155,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:30:02.902491"
+    },
+    {
+      "id": 49,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:30:02.905357",
+        "get_screen": 0.70839,
+        "total": 45.912636
+      },
+      "accuracy": {
+        "distance": 14.5,
+        "iou": 0.01652892561983471,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 1760,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:30:48.818107"
+    },
+    {
+      "id": 50,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:30:48.821028",
+        "get_screen": 0.723865,
+        "total": 74.055062
+      },
+      "accuracy": {
+        "distance": 26.21545345783666,
+        "iou": 0.02531645569620253,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 1650,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:32:02.876194"
+    },
+    {
+      "id": 51,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:32:02.879113",
+        "get_screen": 0.73028,
+        "total": 82.998623
+      },
+      "accuracy": {
+        "distance": 26.21545345783666,
+        "iou": 0.024691358024691357,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2367,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:33:25.877853"
+    },
+    {
+      "id": 52,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:33:25.881099",
+        "get_screen": 0.726482,
+        "total": 80.329745
+      },
+      "accuracy": {
+        "distance": 11.704699910719626,
+        "iou": 0.017241379310344827,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2013,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:34:46.210948"
+    },
+    {
+      "id": 53,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:34:46.213920",
+        "get_screen": 0.690566,
+        "total": 47.863877
+      },
+      "accuracy": {
+        "distance": 16.278820596099706,
+        "iou": 0.014492753623188406,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2594,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:35:34.077920"
+    },
+    {
+      "id": 54,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:35:34.080900",
+        "get_screen": 0.719678,
+        "total": 75.285016
+      },
+      "accuracy": {
+        "distance": 33.55964838909967,
+        "iou": 0.017391304347826087,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 3414,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:36:49.366026"
+    },
+    {
+      "id": 55,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:36:49.369120",
+        "get_screen": 0.695179,
+        "total": 76.986993
+      },
+      "accuracy": {
+        "distance": 30.955613384328213,
+        "iou": 0.020618556701030927,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2166,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:38:06.356230"
+    },
+    {
+      "id": 56,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:38:06.359228",
+        "get_screen": 0.719724,
+        "total": 81.810004
+      },
+      "accuracy": {
+        "distance": 32.202484376209235,
+        "iou": 0.017857142857142856,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 3422,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:39:28.169326"
+    },
+    {
+      "id": 57,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:39:28.172470",
+        "get_screen": 0.685879,
+        "total": 47.130753
+      },
+      "accuracy": {
+        "distance": 37.69615364994153,
+        "iou": 0.014705882352941176,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 3727,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:40:15.303327"
+    },
+    {
+      "id": 58,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:40:15.306311",
+        "get_screen": 0.698995,
+        "total": 55.21986
+      },
+      "accuracy": {
+        "distance": 22.02271554554524,
+        "iou": 0.03125,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 1870,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:41:10.526264"
+    },
+    {
+      "id": 59,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:41:10.529408",
+        "get_screen": 0.692201,
+        "total": 78.661276
+      },
+      "accuracy": {
+        "distance": 31.752952618614856,
+        "iou": 0.018691588785046728,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 3659,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:42:29.190794"
+    },
+    {
+      "id": 60,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:43:33.074667",
+        "get_screen": 0.707246,
+        "total": 67.424684
+      },
+      "accuracy": {
+        "distance": 10.0,
+        "iou": 0.04,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 1062,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:44:40.499455"
+    },
+    {
+      "id": 61,
+      "success": false,
+      "timings": {
+        "start": "2024-12-22 19:44:40.502420",
+        "get_screen": 0.693713,
+        "total": 78.648754
+      },
+      "accuracy": {
+        "distance": -1,
+        "iou": 0.0,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 72,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:45:59.151234"
+    },
+    {
+      "id": 62,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:45:59.161271",
+        "get_screen": 0.698588,
+        "total": 68.755898
+      },
+      "accuracy": {
+        "distance": 34.0147027033899,
+        "iou": 0.017241379310344827,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 3882,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:47:07.917280"
+    },
+    {
+      "id": 63,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:47:07.920535",
+        "get_screen": 0.719191,
+        "total": 82.920008
+      },
+      "accuracy": {
+        "distance": 25.238858928247925,
+        "iou": 0.02564102564102564,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 1990,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:48:30.840646"
+    },
+    {
+      "id": 64,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:48:30.843867",
+        "get_screen": 0.674949,
+        "total": 46.643043
+      },
+      "accuracy": {
+        "distance": 26.21545345783666,
+        "iou": 0.024691358024691357,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2937,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:49:17.487011"
+    },
+    {
+      "id": 65,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:49:17.490364",
+        "get_screen": 0.709925,
+        "total": 84.120571
+      },
+      "accuracy": {
+        "distance": 35.79455265819088,
+        "iou": 0.01652892561983471,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 1488,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:50:41.611041"
+    },
+    {
+      "id": 66,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:50:41.614333",
+        "get_screen": 0.682479,
+        "total": 73.467092
+      },
+      "accuracy": {
+        "distance": 7.211102550927978,
+        "iou": 0.02127659574468085,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 1999,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:51:55.081556"
+    },
+    {
+      "id": 67,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:51:55.084908",
+        "get_screen": 0.711313,
+        "total": 52.74589
+      },
+      "accuracy": {
+        "distance": 34.0147027033899,
+        "iou": 0.017241379310344827,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 4282,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:52:47.830901"
+    },
+    {
+      "id": 68,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:52:47.834126",
+        "get_screen": 0.709315,
+        "total": 79.134041
+      },
+      "accuracy": {
+        "distance": 8.48528137423857,
+        "iou": 0.014925373134328358,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 3244,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:54:06.968277"
+    },
+    {
+      "id": 69,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:54:06.971830",
+        "get_screen": 1.034326,
+        "total": 54.61193
+      },
+      "accuracy": {
+        "distance": 35.79455265819088,
+        "iou": 0.016,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 3921,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:55:01.583893"
+    },
+    {
+      "id": 70,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:55:01.587363",
+        "get_screen": 0.733781,
+        "total": 81.199767
+      },
+      "accuracy": {
+        "distance": 35.79455265819088,
+        "iou": 0.016260162601626018,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 1861,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:56:22.787229"
+    },
+    {
+      "id": 71,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:56:22.790333",
+        "get_screen": 0.710547,
+        "total": 71.754275
+      },
+      "accuracy": {
+        "distance": 12.619429464123963,
+        "iou": 0.023529411764705882,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 1881,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:57:34.544705"
+    },
+    {
+      "id": 72,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:57:34.548218",
+        "get_screen": 0.682138,
+        "total": 83.301245
+      },
+      "accuracy": {
+        "distance": 18.741664813991314,
+        "iou": 0.024691358024691357,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2317,
+        "error": null
+      },
+      "timestamp": "2024-12-22 19:58:57.849584"
+    },
+    {
+      "id": 73,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 19:58:57.853011",
+        "get_screen": 0.690994,
+        "total": 81.103408
+      },
+      "accuracy": {
+        "distance": 17.029386365926403,
+        "iou": 0.025,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2133,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:00:18.956548"
+    },
+    {
+      "id": 74,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 20:00:18.959969",
+        "get_screen": 0.700518,
+        "total": 79.916412
+      },
+      "accuracy": {
+        "distance": 32.64965543462902,
+        "iou": 0.017857142857142856,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2541,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:01:38.876484"
+    },
+    {
+      "id": 75,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 20:01:38.879976",
+        "get_screen": 0.707333,
+        "total": 81.879337
+      },
+      "accuracy": {
+        "distance": 29.58462438497403,
+        "iou": 0.021505376344086023,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 3281,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:03:00.759416"
+    },
+    {
+      "id": 76,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 20:03:00.762902",
+        "get_screen": 0.688635,
+        "total": 73.074529
+      },
+      "accuracy": {
+        "distance": 8.902246907382429,
+        "iou": 0.03278688524590164,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 1110,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:04:13.837559"
+    },
+    {
+      "id": 77,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 20:04:13.841125",
+        "get_screen": 0.707726,
+        "total": 85.353354
+      },
+      "accuracy": {
+        "distance": 30.4138126514911,
+        "iou": 0.0196078431372549,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2589,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:05:39.194601"
+    },
+    {
+      "id": 78,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 20:05:39.198172",
+        "get_screen": 0.6968,
+        "total": 75.41787
+      },
+      "accuracy": {
+        "distance": 31.32491021535417,
+        "iou": 0.019417475728155338,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 3604,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:06:54.616142"
+    },
+    {
+      "id": 79,
+      "success": false,
+      "timings": {
+        "start": "2024-12-22 20:06:54.619706",
+        "get_screen": 0.773137,
+        "total": 79.293415
+      },
+      "accuracy": {
+        "distance": 65.96969000988257,
+        "iou": 0.0,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2962,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:08:13.913228"
+    },
+    {
+      "id": 80,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 20:09:17.744737",
+        "get_screen": 0.710216,
+        "total": 93.784192
+      },
+      "accuracy": {
+        "distance": 31.76476034853718,
+        "iou": 0.019230769230769232,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2047,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:10:51.529023"
+    },
+    {
+      "id": 81,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 20:10:51.532444",
+        "get_screen": 0.70025,
+        "total": 80.936803
+      },
+      "accuracy": {
+        "distance": 28.217902119044926,
+        "iou": 0.02197802197802198,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2135,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:12:12.469343"
+    },
+    {
+      "id": 82,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 20:12:12.473245",
+        "get_screen": 0.72308,
+        "total": 86.840482
+      },
+      "accuracy": {
+        "distance": 22.67156809750927,
+        "iou": 0.03125,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2372,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:13:39.313821"
+    },
+    {
+      "id": 83,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 20:13:39.317659",
+        "get_screen": 0.691443,
+        "total": 78.417741
+      },
+      "accuracy": {
+        "distance": 28.30194339616981,
+        "iou": 0.022727272727272728,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 1955,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:14:57.735541"
+    },
+    {
+      "id": 84,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 20:14:57.739428",
+        "get_screen": 0.732485,
+        "total": 73.394566
+      },
+      "accuracy": {
+        "distance": 26.627053911388696,
+        "iou": 0.025,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2563,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:16:11.134085"
+    },
+    {
+      "id": 85,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 20:16:11.137937",
+        "get_screen": 0.698137,
+        "total": 75.301051
+      },
+      "accuracy": {
+        "distance": 21.569654610122992,
+        "iou": 0.03636363636363636,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2406,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:17:26.439086"
+    },
+    {
+      "id": 86,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 20:17:26.442651",
+        "get_screen": 0.708318,
+        "total": 85.436996
+      },
+      "accuracy": {
+        "distance": 30.4138126514911,
+        "iou": 0.0196078431372549,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 3919,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:18:51.879746"
+    },
+    {
+      "id": 87,
+      "success": false,
+      "timings": {
+        "start": "2024-12-22 20:18:51.883701",
+        "get_screen": 0.696555,
+        "total": 15.596846
+      },
+      "accuracy": {
+        "distance": -1,
+        "iou": 0.0,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 64,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:19:07.480607"
+    },
+    {
+      "id": 88,
+      "success": false,
+      "timings": {
+        "start": "2024-12-22 20:19:07.491705",
+        "get_screen": 0.720197,
+        "total": 70.551683
+      },
+      "accuracy": {
+        "distance": -1,
+        "iou": 0.0,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 72,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:20:18.043441"
+    },
+    {
+      "id": 89,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 20:20:18.055303",
+        "get_screen": 0.688581,
+        "total": 83.667
+      },
+      "accuracy": {
+        "distance": 47.12748667179272,
+        "iou": 0.011363636363636364,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 5464,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:21:41.722403"
+    },
+    {
+      "id": 90,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 20:21:41.726375",
+        "get_screen": 0.713638,
+        "total": 46.451682
+      },
+      "accuracy": {
+        "distance": 34.0147027033899,
+        "iou": 0.016666666666666666,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2210,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:22:28.178148"
+    },
+    {
+      "id": 91,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 20:22:28.182140",
+        "get_screen": 0.706885,
+        "total": 75.641504
+      },
+      "accuracy": {
+        "distance": 25.80697580112788,
+        "iou": 0.02702702702702703,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2623,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:23:43.823733"
+    },
+    {
+      "id": 92,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 20:23:43.827769",
+        "get_screen": 0.674077,
+        "total": 78.382659
+      },
+      "accuracy": {
+        "distance": 39.0,
+        "iou": 0.014705882352941176,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 4732,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:25:02.210564"
+    },
+    {
+      "id": 93,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 20:25:02.214603",
+        "get_screen": 0.701036,
+        "total": 82.63674
+      },
+      "accuracy": {
+        "distance": 32.202484376209235,
+        "iou": 0.01818181818181818,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2855,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:26:24.851458"
+    },
+    {
+      "id": 94,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 20:26:24.855649",
+        "get_screen": 0.672471,
+        "total": 76.820535
+      },
+      "accuracy": {
+        "distance": 4.47213595499958,
+        "iou": 0.016666666666666666,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2908,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:27:41.676283"
+    },
+    {
+      "id": 95,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 20:27:41.680395",
+        "get_screen": 0.694435,
+        "total": 78.433223
+      },
+      "accuracy": {
+        "distance": 34.0147027033899,
+        "iou": 0.017241379310344827,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 3209,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:29:00.113730"
+    },
+    {
+      "id": 96,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 20:29:00.118026",
+        "get_screen": 0.753878,
+        "total": 69.661511
+      },
+      "accuracy": {
+        "distance": 27.879203718901298,
+        "iou": 0.022988505747126436,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 3217,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:30:09.779656"
+    },
+    {
+      "id": 97,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 20:30:09.783699",
+        "get_screen": 0.703387,
+        "total": 76.106515
+      },
+      "accuracy": {
+        "distance": 49.81214711292819,
+        "iou": 0.01092896174863388,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 4528,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:31:25.890322"
+    },
+    {
+      "id": 98,
+      "success": false,
+      "timings": {
+        "start": "2024-12-22 20:31:25.894675",
+        "get_screen": 0.705475,
+        "total": 88.028102
+      },
+      "accuracy": {
+        "distance": 140.55692796870596,
+        "iou": 0.0,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 3190,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:32:53.922879"
+    },
+    {
+      "id": 99,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 20:32:53.934627",
+        "get_screen": 0.711571,
+        "total": 47.673158
+      },
+      "accuracy": {
+        "distance": 26.627053911388696,
+        "iou": 0.025,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 2807,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:33:41.607899"
+    }
+  ],
+  "failures": [
+    {
+      "iteration": 6,
+      "prompt": "I need to find the Deep Orange button showing only zap off symbol it is just above the Light Orange button",
+      "bbox": {
+        "height": 50,
+        "width": 50,
+        "x": 376,
+        "y": 306
+      },
+      "response": {
+        "filtered_section_ids": [
+          "elem1"
+        ],
+        "children_count": 18,
+        "match": null
+      },
+      "error": null,
+      "actual_pos": [
+        401.0,
+        331.0
+      ],
+      "predicted_pos": null,
+      "timestamp": "2024-12-22 18:37:24.936714"
+    },
+    {
+      "iteration": 27,
+      "prompt": "I want to click on a Blue Gray button showing only rotate cw symbol",
+      "bbox": {
+        "height": 50,
+        "width": 117,
+        "x": 499,
+        "y": 306
+      },
+      "response": {
+        "filtered_section_ids": [
+          "elem1"
+        ],
+        "children_count": 24,
+        "match": null
+      },
+      "error": null,
+      "actual_pos": [
+        557.5,
+        331.0
+      ],
+      "predicted_pos": null,
+      "timestamp": "2024-12-22 19:02:59.358248"
+    },
+    {
+      "iteration": 61,
+      "prompt": "Try to find the Bright Yellow Link button with shopping bag icon which is to the right of the Teal button",
+      "bbox": {
+        "height": 50,
+        "width": 92,
+        "x": 465,
+        "y": 246
+      },
+      "response": {
+        "filtered_section_ids": [
+          "elem1"
+        ],
+        "children_count": 21,
+        "match": null
+      },
+      "error": null,
+      "actual_pos": [
+        511.0,
+        271.0
+      ],
+      "predicted_pos": null,
+      "timestamp": "2024-12-22 19:45:59.153112"
+    },
+    {
+      "iteration": 79,
+      "prompt": "Try to find the Deep Orange mic off button which is to the right of the Medium Green button",
+      "bbox": {
+        "height": 50,
+        "width": 90,
+        "x": 482,
+        "y": 366
+      },
+      "response": {
+        "filtered_section_ids": [
+          "elem1"
+        ],
+        "children_count": 25,
+        "match": {
+          "id": "elem25",
+          "box": [
+            495,
+            323,
+            561,
+            339
+          ],
+          "position": [
+            511,
+            327
+          ],
+          "image": "iVBORw0KGgoAAAANSUhEUgAAAEIAAAAQCAIAAAAtcD5DAAAFN0lEQVR4nN1Wa2xTZRh+zulpT9t1a7u1G6Vboetgc2N3LtuQDCGO2wiMgGKi0fgDUYwiqCwYFBXEIDHxjqKCmoCoEwgjDDRcZBuDMWCwTNzWXdi6zt7Wbr2dnvYcf5ylLGNG4Q/K8+PLl+f9Ls/7fU/e7yP49fPx/wcFYGX1taoOe5QSk4QhVro6PWnLTCNNkfdO29+i6PvGCwNDn81LX5uTLDC3VMZKRCalzKSUKcQisyew/WL36uMt90jnHYOK9lakJe4ryxT6Oy/1bKrtOGy2m91+k0p+j7TdAahx2Q0FKa/Vm8Mc3+L0mVTyxM9/swfYmuV5bzR0trp8Q8/NBXDB6tna0HV+wBMMc1NUsjXZ+udzkwmCEFb48Erv7ut9nZ6gXkGvSNO+PssYK6EARDh+Z1PP/hsDZk8gUS5Zl5P8yvRJwhRngK2s6zjVO9jvZTLi5dtLTIuNGiHU6vStPXWjcWBIr6C3FhlvFzy+9SMcOJ4HQIvIaFtZ1+FhwsU6JYD6fnfpT5drepx5WkWFSWv2BF4401ZZZxamb6k3v3i2rd8XWjUlkRYRu5puPnJsxJ8vn2vfXGceCkU2FhiUEurV2o5dTT1CegsOXfmypV8XI9lYaOjzMsuOXmuweoTQkiNXz1nchjhp2aT4zfXmTk/gX6Xx7qVujgdJIEejACAiCQAxYtH1J2adqMgHsKm2g4lwj2dMOLOy8MDiad8uyALw/uWbdn/IFWTfa7oJ4JuyzO8WZp1/dEa8lDrdN9j055DdH/q4uQ/AgUVZb5eYTlTkiUliR2N3hOOPdjmabMMqmjpZkb+txLR7XkaY43c0dgM41uXoHgpKRMS5VYWfzsuoWZ7vCLBjBN8y1c8dtlqLG4AzyLqZMIB1uckTFXR0wGPpSRRJAvCzkXqrR2CE0Io0LUUSYY5vdnhZjmMiHAEsmpwAQElTzrWlwrDqTkeY40kCExV033AQgFEpaxv0/+7yCVunq+WuIOsKslNUMgB1/R4AzQ4vgDxtbKJcAiAzISYrIabF6Rs/jeFQZDgUAECRxFS1fM20iS8VGEYPnSAfSWmQYTkeADQy8cidEoSapuwBtnc4KDhQRpES0dirdjMsAI6H8ev60bzFywgHd2FgKOWruijvDLJMmBPOXkXfkjq6PzaNJzN10Uo1LgRrAVDTYpIAx8MZHLncMMe5gmEACVKxkqYA+MMcE+aEZ8cVZEMRLk5CqaVi4ZgOleeMXjlbo/i11wUgXxv7VnHqmH0TpGIAg8FwlLHdZqq7ed3kYlGpXg3gxzabwFS12yM8LxWRD+pV2RqFnCIBVHc5APjYyNR953V7ai8MeGYkxQneS4mly1M1CyfHuxmWB6+kKaFyWH3Mw4b48lRNQWKsm2FlFElTZLYmBsAV+7DFGwTQYPW0DfrHSBq/4P4j3puTVnzw0t5Wqy0QUtHiqnYbgC2zjPFSMYANBYZtF7uf/qW1ustx2TbsDLJzk9WlyWqSIJ7J1n/S3Lfo8NXlJm2z3Vtv9ZTolEuMmqVGTZ5WcdXuLTrYWKJT1fQ4Oz2ByumT5hviy40aXYzE6gvN+aFpbrL6eLdTr6AtXoYfpecu/xqFSXGnVxbMT1Gf7XNXtdsyE2L2lj2weeZkIfpmceqO2aZEuWT/HwNeNrI+P+Xw0hySIAB8UDp1a5GRFpF7Wvrb3P5nc/TVy3JJghCLyJMV+U9l6ixe5osWC8/zu+akvTPbBEAsIo8szc3TKiw+ps7q+eihdKF+MhEuqoe4P76G/8Wf313gPknjL3xQNCam9uZ1AAAAAElFTkSuQmCC",
+          "section_id": "elem1",
+          "neighbors": {
+            "left": {
+              "id": "elem15",
+              "box": [
+                348,
+                304,
+                473,
+                356
+              ],
+              "type": "button",
+              "visual_elements": [
+                "shield icon"
+              ],
+              "dominant_color": "teal",
+              "text": "Generate",
+              "neighbors": {
+                "left": {
+                  "id": "elem13"
+                },
+                "right": {
+                  "id": "elem14"
+                },
+                "above": {
+                  "id": "elem11"
+                },
+                "below": {
+                  "id": "elem19"
+                }
+              }
+            },
+            "right": null,
+            "above": {
+              "id": "elem10",
+              "box": [
+                480,
+                243,
+                574,
+                296
+              ],
+              "type": "button",
+              "visual_elements": [
+                "arrow icon pointing left"
+              ],
+              "dominant_color": "red",
+              "text": "Back",
+              "neighbors": {
+                "left": {
+                  "id": "elem11"
+                },
+                "below": {
+                  "id": "elem14"
+                }
+              }
+            },
+            "below": {
+              "id": "elem18",
+              "box": [
+                480,
+                364,
+                573,
+                416
+              ],
+              "type": "icon",
+              "visual_elements": [
+                "no symbol"
+              ],
+              "dominant_color": "orange",
+              "text": null,
+              "neighbors": {
+                "left": {
+                  "id": "elem19"
+                },
+                "above": {
+                  "id": "elem14"
+                }
+              }
+            }
+          },
+          "type": "button",
+          "text": "Proceed",
+          "visual_elements": [
+            "none"
+          ],
+          "primary_function": "This button is likely used to initiate an action or process.",
+          "dominant_color": "orange"
+        }
+      },
+      "error": null,
+      "actual_pos": [
+        527.0,
+        391.0
+      ],
+      "predicted_pos": [
+        511,
+        327
+      ],
+      "timestamp": "2024-12-22 20:08:13.915592"
+    },
+    {
+      "iteration": 87,
+      "prompt": "I'm looking for a Deep Orange button with log in icon it is on the left side of the Deep Purple Share button",
+      "bbox": {
+        "height": 50,
+        "width": 103,
+        "x": 363,
+        "y": 246
+      },
+      "response": {
+        "filtered_section_ids": [],
+        "children_count": 0,
+        "match": null
+      },
+      "error": null,
+      "actual_pos": [
+        414.5,
+        271.0
+      ],
+      "predicted_pos": null,
+      "timestamp": "2024-12-22 20:19:07.483142"
+    },
+    {
+      "iteration": 88,
+      "prompt": "Please locate the Deep Purple slash button",
+      "bbox": {
+        "height": 50,
+        "width": 50,
+        "x": 272,
+        "y": 246
+      },
+      "response": {
+        "filtered_section_ids": [
+          "elem1"
+        ],
+        "children_count": 21,
+        "match": null
+      },
+      "error": null,
+      "actual_pos": [
+        297.0,
+        271.0
+      ],
+      "predicted_pos": null,
+      "timestamp": "2024-12-22 20:20:18.045999"
+    },
+    {
+      "iteration": 98,
+      "prompt": "Show me a Purple phone off button you can find it just below the Bright Yellow Reset button",
+      "bbox": {
+        "height": 50,
+        "width": 169,
+        "x": 199,
+        "y": 306
+      },
+      "response": {
+        "filtered_section_ids": [
+          "elem1"
+        ],
+        "children_count": 26,
+        "match": {
+          "id": "elem10",
+          "box": [
+            376,
+            244,
+            486,
+            296
+          ],
+          "position": [
+            403,
+            257
+          ],
+          "image": "iVBORw0KGgoAAAANSUhEUgAAAG4AAAA0CAIAAADkLJo9AAAFxklEQVR4nO2abUxTVxiA33spl0Jp6YWWAhWpQJUSFBifajSM6Kbb/DHNdGYmbnGbG7D4gR/7YzZn2GJkOkUE90PnfszMoG4J2zQkc8pwK1YU1FFAICCgQFtKaSlt6b37cQk6dXgvPcTUnOdHP07f9/TNc0/6nt4cgmVZwKCAfN4FvDiIuKePFl94vnX4O5V1K/CqRAZWiQysEhlYJTKwSmRglcjAKpGBVSIDq0QGVokMrBIZWCUysEpkYJXIEPEPlYVTqwuTkrMVsnBq6sjWBsvBT+p9K8z/EKBy7RZd5rJoPpFe78M781KaKirNdDnHDxa94HIFqNRlKQDg6wJ9W+MQzxRZRNDOihylOqS7xTad6vwKASolYYEAwN+jlKZ2VeQq1MGmXmdZsWHq4Lw1s9/envzkeGPtQMWnDfyLfI4IUCkIKU3tPr6Q87h/818jQ24+WYyXNT9wPjoybHLNTIG82HdmaV+Hnee1nBGV0/MIAEODY3vWXpmJkqZBXJJMqQ7p67DzjEevctoep0aTHLZqkzY+RR5IkQM9o7U/37tU1cV9dKA6X0pTR7YZVr2vjZ4TunV5zQf70jLyo6rKjEEhovy34giCuHyuq/rE3XVbk7NfiR73sOcrWuqqe7j0xFT6jU2JsVoZsNB+23r2qLG/27GmaN7y9XMAIHVJZGXdivKd129dHZy6QsQqZ8hjfIp8e1m2iCJbb1iGza60Jap123Rypfh8RQsAjHsYAHizYF4gRXbcHpocWfiaesTqbrtpSVuqWrkxIXaujAwg2hqH5i9Sbtid0nzNZOkfi9ZItnyTJRKRf5zrUqpDFixWxmhCP99Q23ZzKGE+HZ8iN/U6m+oGTH2jzyzSJ5XFx3KoIPLojuucMilN7azIVaiDB+6NlhbqUXkEgNUF80QUqb/Yd/KLJgB4KU/1YUn68vWamtMddquHYVgAcDvHv9pUz3hZAOAexRJRyXtXGS+79/QS1WyJIiZk7zu1APDluTw6UqzLUtRV9yRlKgZ7RjvvWH881CyiyEMXlynUwbFaadOfA7MSpPEp8t6OkTOHm/kU6ZNKcYgoVivddTz3wMd6AOD2PYO9o6WFept5ol0Ul+ewDMtzxx4RFVxZt+LRkV9Ptf92qj1hPg0A12ruc4M3LvczXpYMIGYlyowGMzdYX3Of8f7npElrg4Ub6eu0q2ZLWhss3EmUvk47HSmW0hQAXKrq4n4oAkQEANitbjpSLFeKAYaF2vBJZVmxYUd5TmRsyK7KXABQxEysx0mPAKBNo/lP+GQHdwx7JNJAggQAsFsnljnLgsPmkdIUrRJPRtosj/d6p32ce+H1MADgdHi4t+NuBgBIkgAAOlK8dotOlxUhljxUQfCv+BF8Umkzu0oL9ZxNAHjSo1Ce2sEDg0iWAYKc2NgCABlASGSBAOAY9kyGPbYkebK5JF2THHbnb1PN6U6Xc7xgfwa3WqeBr7czOJv93Y7+boePHv8Pj4tpvWEBgIz8ib+t6XkqMoDwuJm7vP8vPBWCgDhdGABc+anbaDA7hj2hcgoAiAACALgrExQcwHM2BB3cZnZ9tr7W93mm4Gy5cfe3Cxe9rpbSlHPEk/5yFAD8cvLu6IjnmblTwLLwoMsRrZGs3JgwJ1me/WpMe9NQYiqdtybOZnJZB8cAYG56+Lt7Flyt7uEu5xT4x0227hbbwSK90WCemxae/nLU/U77qZJbF77v8H3m7/Y1dRmH1QnS9DxV1ZHmH0rvWPrHNLqwKE3o9d8fNNebGS+bkqvkszYJ7nwln5NsXG8VeuZtell+Bz7JhhIBKu1WDwBoUwVsbpIyIiYTX3gEtB2jwZS5LLr4WI7Q72g2mISm+CMCVJ453MwwoMuK4L/zslnc/+gHz5a3TKs2P0OASpvFfWJv48yV4u/gtoMMrBIZWCUysEpkYJXIwCqRgVUiA6tEBlaJDKwSGVglMrBKZGCVyMAqkfEvrPVKu0A1YGYAAAAASUVORK5CYII=",
+          "section_id": "elem1",
+          "neighbors": {
+            "left": {
+              "id": "elem9",
+              "box": [
+                197,
+                243,
+                368,
+                296
+              ],
+              "type": "button",
+              "visual_elements": [
+                "battery icon"
+              ],
+              "dominant_color": "yellow",
+              "text": "Reset",
+              "neighbors": {
+                "right": {
+                  "id": "elem10"
+                },
+                "below": {
+                  "id": "elem12"
+                }
+              }
+            },
+            "right": {
+              "id": "elem11",
+              "box": [
+                493,
+                244,
+                601,
+                296
+              ],
+              "type": "button",
+              "visual_elements": [
+                "none"
+              ],
+              "dominant_color": "green",
+              "text": "Copy",
+              "neighbors": {
+                "left": {
+                  "id": "elem10"
+                },
+                "below": {
+                  "id": "elem14"
+                }
+              }
+            },
+            "above": null,
+            "below": {
+              "id": "elem13",
+              "box": [
+                376,
+                304,
+                486,
+                356
+              ],
+              "type": "icon",
+              "visual_elements": [
+                "heart"
+              ],
+              "dominant_color": "red",
+              "text": null,
+              "neighbors": {
+                "left": {
+                  "id": "elem12"
+                },
+                "right": {
+                  "id": "elem14"
+                },
+                "above": {
+                  "id": "elem10"
+                },
+                "below": {
+                  "id": "elem16"
+                }
+              }
+            }
+          },
+          "type": "button",
+          "text": "Format",
+          "visual_elements": [
+            "checkmark icon"
+          ],
+          "primary_function": "This button is likely used for formatting options, possibly in a text editor or document processing application.",
+          "dominant_color": "purple"
+        }
+      },
+      "error": null,
+      "actual_pos": [
+        283.5,
+        331.0
+      ],
+      "predicted_pos": [
+        403,
+        257
+      ],
+      "timestamp": "2024-12-22 20:32:53.925993"
+    }
+  ]
+}

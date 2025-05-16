@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0186.PNG",
+  "prompt": "Click on the Text 3sat",
+  "bounding_box": {
+    "x1": 757,
+    "y1": 1367,
+    "x2": 878,
+    "y2": 1462
+  }
+}

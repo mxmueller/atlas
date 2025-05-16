@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0174.PNG",
+  "prompt": "Please click on the blue Sign in with Facebook Button",
+  "bounding_box": {
+    "x1": 860,
+    "y1": 1320,
+    "x2": 1504,
+    "y2": 1478
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/home.png",
+  "prompt": "Give me the Radio App",
+  "bounding_box": {
+    "x1": 588,
+    "y1": 346,
+    "x2": 717,
+    "y2": 508
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0176.PNG",
+  "prompt": "Click on the icon that shows a lock, it has a white background",
+  "bounding_box": {
+    "x1": 2112,
+    "y1": 358,
+    "x2": 2183,
+    "y2": 426
+  }
+}

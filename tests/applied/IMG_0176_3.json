@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0176.PNG",
+  "prompt": "Click on the Text Full Circle",
+  "bounding_box": {
+    "x1": 151,
+    "y1": 480,
+    "x2": 876,
+    "y2": 794
+  }
+}

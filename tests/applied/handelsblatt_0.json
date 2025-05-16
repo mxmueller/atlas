@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/handelsblatt.png",
+  "prompt": "Click the orange Abo Button, its next to Anmelden button",
+  "bounding_box": {
+    "x1": 832,
+    "y1": 35,
+    "x2": 892,
+    "y2": 78
+  }
+}

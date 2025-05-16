@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0183.PNG",
+  "prompt": "Click the Einstellen button it has a orange background",
+  "bounding_box": {
+    "x1": 325,
+    "y1": 1495,
+    "x2": 2054,
+    "y2": 1573
+  }
+}

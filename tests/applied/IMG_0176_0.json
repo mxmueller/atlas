@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0176.PNG",
+  "prompt": "Click on the Musik Button in the Menu bar",
+  "bounding_box": {
+    "x1": 332,
+    "y1": 164,
+    "x2": 487,
+    "y2": 239
+  }
+}

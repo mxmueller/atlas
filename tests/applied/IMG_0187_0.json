@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0187.PNG",
+  "prompt": "Click on the red Button with the text Zustimmen",
+  "bounding_box": {
+    "x1": 27,
+    "y1": 1267,
+    "x2": 2333,
+    "y2": 1370
+  }
+}

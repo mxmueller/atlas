@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0174.PNG",
+  "prompt": "Please click on the Sign in with Apple button that also has an Apple Icon",
+  "bounding_box": {
+    "x1": 162,
+    "y1": 1317,
+    "x2": 820,
+    "y2": 1468
+  }
+}

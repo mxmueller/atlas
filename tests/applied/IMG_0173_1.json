@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0173.PNG",
+  "prompt": "Click on the Join meeting button",
+  "bounding_box": {
+    "x1": 800,
+    "y1": 1191,
+    "x2": 1556,
+    "y2": 1308
+  }
+}

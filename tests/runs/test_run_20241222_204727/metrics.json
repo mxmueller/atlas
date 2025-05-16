@@ -1,0 +1,432 @@
+{
+  "summary": {
+    "total_tests": 20,
+    "successful_tests": 4,
+    "failed_tests": 16,
+    "avg_response_time": 17.581271600000004,
+    "avg_distance": 3.7669000102486443,
+    "avg_iou": 0.0036129829290206645,
+    "avg_confidence": 0.0,
+    "error_types": {
+      "('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))": 1,
+      "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bb3df57b0>: Failed to establish a new connection: [Errno 111] Connection refused'))": 1,
+      "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bb1d66e60>: Failed to establish a new connection: [Errno 111] Connection refused'))": 1,
+      "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bad349cf0>: Failed to establish a new connection: [Errno 111] Connection refused'))": 1,
+      "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bb3df5d20>: Failed to establish a new connection: [Errno 111] Connection refused'))": 1,
+      "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bb271c7c0>: Failed to establish a new connection: [Errno 111] Connection refused'))": 1,
+      "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bac900cd0>: Failed to establish a new connection: [Errno 111] Connection refused'))": 1,
+      "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bac9e5f00>: Failed to establish a new connection: [Errno 111] Connection refused'))": 1,
+      "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bb1d641f0>: Failed to establish a new connection: [Errno 111] Connection refused'))": 1,
+      "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bad3c18a0>: Failed to establish a new connection: [Errno 111] Connection refused'))": 1,
+      "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bac93ee60>: Failed to establish a new connection: [Errno 111] Connection refused'))": 1,
+      "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bad3f5ea0>: Failed to establish a new connection: [Errno 111] Connection refused'))": 1,
+      "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bac9de770>: Failed to establish a new connection: [Errno 111] Connection refused'))": 1,
+      "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bad373a90>: Failed to establish a new connection: [Errno 111] Connection refused'))": 1,
+      "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bb1d1d450>: Failed to establish a new connection: [Errno 111] Connection refused'))": 1,
+      "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2ba7f7e950>: Failed to establish a new connection: [Errno 111] Connection refused'))": 1
+    }
+  },
+  "iterations": [
+    {
+      "id": 0,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 20:47:27.373107",
+        "get_screen": 0.68823,
+        "total": 139.392112
+      },
+      "accuracy": {
+        "distance": 31.304951684997057,
+        "iou": 0.018867924528301886,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 3163,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:49:46.765325"
+    },
+    {
+      "id": 1,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 20:49:46.766988",
+        "get_screen": 0.689092,
+        "total": 47.016077
+      },
+      "accuracy": {
+        "distance": 33.54101966249684,
+        "iou": 0.017857142857142856,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 1678,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:50:33.783152"
+    },
+    {
+      "id": 2,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 20:50:33.784782",
+        "get_screen": 0.722083,
+        "total": 81.26706
+      },
+      "accuracy": {
+        "distance": 13.45362404707371,
+        "iou": 0.018867924528301886,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 1787,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:51:55.051956"
+    },
+    {
+      "id": 3,
+      "success": true,
+      "timings": {
+        "start": "2024-12-22 20:51:55.053675",
+        "get_screen": 0.697554,
+        "total": 44.757084
+      },
+      "accuracy": {
+        "distance": 13.038404810405298,
+        "iou": 0.016666666666666666,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 1875,
+        "error": null
+      },
+      "timestamp": "2024-12-22 20:52:39.810862"
+    },
+    {
+      "id": 4,
+      "success": false,
+      "timings": {
+        "start": "2024-12-22 20:52:39.812566",
+        "get_screen": 0.703615,
+        "total": 28.136455
+      },
+      "accuracy": {
+        "distance": -1,
+        "iou": 0.0,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 0,
+        "error": "('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
+      },
+      "timestamp": "2024-12-22 20:53:07.949060"
+    },
+    {
+      "id": 5,
+      "success": false,
+      "timings": {
+        "start": "2024-12-22 20:53:08.106145",
+        "get_screen": 0.924922,
+        "total": 0.925952
+      },
+      "accuracy": {
+        "distance": -1,
+        "iou": 0.0,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 0,
+        "error": "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bb3df57b0>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      },
+      "timestamp": "2024-12-22 20:53:09.032124"
+    },
+    {
+      "id": 6,
+      "success": false,
+      "timings": {
+        "start": "2024-12-22 20:53:09.118761",
+        "get_screen": 1.046885,
+        "total": 1.047979
+      },
+      "accuracy": {
+        "distance": -1,
+        "iou": 0.0,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 0,
+        "error": "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bb1d66e60>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      },
+      "timestamp": "2024-12-22 20:53:10.166765"
+    },
+    {
+      "id": 7,
+      "success": false,
+      "timings": {
+        "start": "2024-12-22 20:53:10.247093",
+        "get_screen": 0.699881,
+        "total": 0.700876
+      },
+      "accuracy": {
+        "distance": -1,
+        "iou": 0.0,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 0,
+        "error": "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bad349cf0>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      },
+      "timestamp": "2024-12-22 20:53:10.947993"
+    },
+    {
+      "id": 8,
+      "success": false,
+      "timings": {
+        "start": "2024-12-22 20:53:11.045602",
+        "get_screen": 0.668596,
+        "total": 0.66965
+      },
+      "accuracy": {
+        "distance": -1,
+        "iou": 0.0,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 0,
+        "error": "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bb3df5d20>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      },
+      "timestamp": "2024-12-22 20:53:11.715279"
+    },
+    {
+      "id": 9,
+      "success": false,
+      "timings": {
+        "start": "2024-12-22 20:53:11.796174",
+        "get_screen": 0.685455,
+        "total": 0.686485
+      },
+      "accuracy": {
+        "distance": -1,
+        "iou": 0.0,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 0,
+        "error": "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bb271c7c0>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      },
+      "timestamp": "2024-12-22 20:53:12.482685"
+    },
+    {
+      "id": 10,
+      "success": false,
+      "timings": {
+        "start": "2024-12-22 20:53:12.561992",
+        "get_screen": 0.702087,
+        "total": 0.703083
+      },
+      "accuracy": {
+        "distance": -1,
+        "iou": 0.0,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 0,
+        "error": "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bac900cd0>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      },
+      "timestamp": "2024-12-22 20:53:13.265101"
+    },
+    {
+      "id": 11,
+      "success": false,
+      "timings": {
+        "start": "2024-12-22 20:53:13.358349",
+        "get_screen": 0.723013,
+        "total": 0.72402
+      },
+      "accuracy": {
+        "distance": -1,
+        "iou": 0.0,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 0,
+        "error": "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bac9e5f00>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      },
+      "timestamp": "2024-12-22 20:53:14.082395"
+    },
+    {
+      "id": 12,
+      "success": false,
+      "timings": {
+        "start": "2024-12-22 20:53:14.162412",
+        "get_screen": 0.669521,
+        "total": 0.67053
+      },
+      "accuracy": {
+        "distance": -1,
+        "iou": 0.0,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 0,
+        "error": "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bb1d641f0>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      },
+      "timestamp": "2024-12-22 20:53:14.832968"
+    },
+    {
+      "id": 13,
+      "success": false,
+      "timings": {
+        "start": "2024-12-22 20:53:14.928952",
+        "get_screen": 0.720151,
+        "total": 0.721152
+      },
+      "accuracy": {
+        "distance": -1,
+        "iou": 0.0,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 0,
+        "error": "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bad3c18a0>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      },
+      "timestamp": "2024-12-22 20:53:15.650130"
+    },
+    {
+      "id": 14,
+      "success": false,
+      "timings": {
+        "start": "2024-12-22 20:53:15.731602",
+        "get_screen": 0.699668,
+        "total": 0.700748
+      },
+      "accuracy": {
+        "distance": -1,
+        "iou": 0.0,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 0,
+        "error": "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bac93ee60>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      },
+      "timestamp": "2024-12-22 20:53:16.432376"
+    },
+    {
+      "id": 15,
+      "success": false,
+      "timings": {
+        "start": "2024-12-22 20:53:16.514181",
+        "get_screen": 0.70037,
+        "total": 0.701359
+      },
+      "accuracy": {
+        "distance": -1,
+        "iou": 0.0,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 0,
+        "error": "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bad3f5ea0>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      },
+      "timestamp": "2024-12-22 20:53:17.215566"
+    },
+    {
+      "id": 16,
+      "success": false,
+      "timings": {
+        "start": "2024-12-22 20:53:17.311482",
+        "get_screen": 0.685418,
+        "total": 0.686412
+      },
+      "accuracy": {
+        "distance": -1,
+        "iou": 0.0,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 0,
+        "error": "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bac9de770>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      },
+      "timestamp": "2024-12-22 20:53:17.997920"
+    },
+    {
+      "id": 17,
+      "success": false,
+      "timings": {
+        "start": "2024-12-22 20:53:18.082465",
+        "get_screen": 0.697727,
+        "total": 0.698761
+      },
+      "accuracy": {
+        "distance": -1,
+        "iou": 0.0,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 0,
+        "error": "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bad373a90>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      },
+      "timestamp": "2024-12-22 20:53:18.781252"
+    },
+    {
+      "id": 18,
+      "success": false,
+      "timings": {
+        "start": "2024-12-22 20:53:18.879894",
+        "get_screen": 0.717297,
+        "total": 0.718403
+      },
+      "accuracy": {
+        "distance": -1,
+        "iou": 0.0,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 0,
+        "error": "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2bb1d1d450>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      },
+      "timestamp": "2024-12-22 20:53:19.598324"
+    },
+    {
+      "id": 19,
+      "success": false,
+      "timings": {
+        "start": "2024-12-22 20:53:19.680975",
+        "get_screen": 0.700229,
+        "total": 0.701234
+      },
+      "accuracy": {
+        "distance": -1,
+        "iou": 0.0,
+        "confidence": 0
+      },
+      "response": {
+        "status": 0,
+        "size": 0,
+        "error": "HTTPConnectionPool(host='localhost', port=9999): Max retries exceeded with url: /process-image (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d2ba7f7e950>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      },
+      "timestamp": "2024-12-22 20:53:20.382234"
+    }
+  ],
+  "failures": []
+}

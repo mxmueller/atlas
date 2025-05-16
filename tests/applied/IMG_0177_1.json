@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0177.PNG",
+  "prompt": "Klick on the AGB Text",
+  "bounding_box": {
+    "x1": 31,
+    "y1": 973,
+    "x2": 249,
+    "y2": 1042
+  }
+}

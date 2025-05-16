@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0192.PNG",
+  "prompt": "Click on the text Whos in Charge",
+  "bounding_box": {
+    "x1": 1192,
+    "y1": 367,
+    "x2": 1621,
+    "y2": 514
+  }
+}

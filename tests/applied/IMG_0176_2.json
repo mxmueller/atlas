@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0176.PNG",
+  "prompt": "Click on the white Button with the Text Exclusive",
+  "bounding_box": {
+    "x1": 161,
+    "y1": 799,
+    "x2": 370,
+    "y2": 871
+  }
+}

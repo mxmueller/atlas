@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0182.PNG",
+  "prompt": "Click the text Willi und die Windzors",
+  "bounding_box": {
+    "x1": 1394,
+    "y1": 359,
+    "x2": 1853,
+    "y2": 919
+  }
+}

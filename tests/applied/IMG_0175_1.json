@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/IMG_0175.PNG",
+  "prompt": "Give me the white Button with the text Sign Up",
+  "bounding_box": {
+    "x1": 1181,
+    "y1": 1459,
+    "x2": 1657,
+    "y2": 1568
+  }
+}

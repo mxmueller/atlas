@@ -1,0 +1,10 @@
+{
+  "image_path": "screenshots/apps.png",
+  "prompt": "Click on the browser app",
+  "bounding_box": {
+    "x1": 108,
+    "y1": 98,
+    "x2": 248,
+    "y2": 281
+  }
+}

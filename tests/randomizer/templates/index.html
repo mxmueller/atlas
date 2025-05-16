@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>3x3 Grid</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, auto);
+            gap: 10px;
+            padding: 20px;
+            justify-content: center;
+        }
+        .grid-button {
+            min-width: 50px;
+            min-height: 50px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            white-space: normal;
+            word-wrap: break-word;
+            border: none;
+            font-weight: bold;
+            transition: opacity 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .grid-button:hover {
+            opacity: 0.8;
+        }
+        .icon {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        {% for button in buttons %}
+            <button 
+                class="grid-button" 
+                style="background-color: {{ button.color }}; color: {% if button.is_light %}black{% else %}white{% endif %};"
+                title="{{ button.color_name }}"
+            >
+                {% if button.display_type in ['icon', 'both'] %}
+                    <i data-feather="{{ button.icon }}"></i>
+                {% endif %}
+                {% if button.display_type in ['text', 'both'] %}
+                    {{ button.label }}
+                {% endif %}
+            </button>
+        {% endfor %}
+    </div>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+        feather.replace()
+    </script>
+</body>
+</html>
